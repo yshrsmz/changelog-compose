@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<changelog>
+    <changelogversion versionName="2.0.0" changeDate="2025-10-28">
+        <changelogtext type="breaking">Migrated to Jetpack Compose with Material 3 design system</changelogtext>
+        <changelogtext type="breaking">Minimum SDK increased to Android 10 (API 29)</changelogtext>
+        <changelogtext type="new">Added support for dynamic color on Android 12+</changelogtext>
+        <changelogtext type="new">Implemented edge-to-edge UI design</changelogtext>
+        <changelogtext type="fix">Fixed memory leak in changelog parser</changelogtext>
+    </changelogversion>
+
+    <changelogversion versionName="1.5.0" changeDate="2024-09-15">
+        <changelogtext type="new">Added dark mode support with automatic theme switching</changelogtext>
+        <changelogtext type="new">Introduced customizable content padding</changelogtext>
+        <changelogtext type="new">Added retry functionality for error states</changelogtext>
+        <changelogtext type="fix">Fixed crash when loading empty changelog files</changelogtext>
+        <changelogtext type="fix">Improved XML parsing performance for large changelogs</changelogtext>
+        <changelogtext>Updated dependencies to latest stable versions</changelogtext>
+    </changelogversion>
+
+    <changelogversion versionName="1.4.2" changeDate="2024-07-20">
+        <changelogtext type="fix">Fixed text overflow in long change descriptions</changelogtext>
+        <changelogtext type="fix">Corrected color scheme for change type indicators</changelogtext>
+        <changelogtext>Minor UI improvements and polish</changelogtext>
+    </changelogversion>
+
+    <changelogversion versionName="1.4.0" changeDate="2024-06-10">
+        <changelogtext type="new">Added support for breaking change type indicator</changelogtext>
+        <changelogtext type="new">Implemented loading state with progress indicator</changelogtext>
+        <changelogtext type="fix">Fixed date parsing for various date formats</changelogtext>
+        <changelogtext>Improved accessibility with content descriptions</changelogtext>
+    </changelogversion>
+
+    <changelogversion versionName="1.3.0" changeDate="2024-04-05">
+        <changelogtext type="new">Added support for optional change dates</changelogtext>
+        <changelogtext type="new">Introduced change type categorization (FIX, NEW)</changelogtext>
+        <changelogtext type="fix">Fixed XML parsing errors with special characters</changelogtext>
+        <changelogtext>Enhanced error messages for better debugging</changelogtext>
+    </changelogversion>
+
+    <changelogversion versionName="1.2.0" changeDate="2024-02-15">
+        <changelogtext type="new">Added version grouping in changelog display</changelogtext>
+        <changelogtext type="fix">Fixed spacing issues in changelog list</changelogtext>
+        <changelogtext>Optimized memory usage during XML parsing</changelogtext>
+    </changelogversion>
+
+    <changelogversion versionName="1.1.0" changeDate="2024-01-10">
+        <changelogtext type="new">Implemented XML-based changelog format</changelogtext>
+        <changelogtext type="new">Added Material Design 3 styling</changelogtext>
+        <changelogtext type="fix">Fixed rendering issues on tablets</changelogtext>
+    </changelogversion>
+
+    <changelogversion versionName="1.0.0" changeDate="2023-12-01">
+        <changelogtext>Initial release of changelog-compose library</changelogtext>
+        <changelogtext>Basic changelog display functionality</changelogtext>
+        <changelogtext>Support for version names and descriptions</changelogtext>
+        <changelogtext>Material Design theming support</changelogtext>
+    </changelogversion>
+</changelog>

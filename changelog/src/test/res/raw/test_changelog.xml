@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<changelog>
+    <changelogversion versionName="2.0.0" changeDate="Jun 18th, 2023">
+        <changelogtext type="new">Test new feature</changelogtext>
+        <changelogtext type="fix">Test bug fix</changelogtext>
+        <changelogtext>Test regular change without type</changelogtext>
+        <changelogtext type="breaking">Test breaking change</changelogtext>
+    </changelogversion>
+    <changelogversion versionName="1.9.0">
+        <changelogtext type="new">Another new feature</changelogtext>
+        <changelogtext type="fix">Another bug fix</changelogtext>
+    </changelogversion>
+</changelog>
