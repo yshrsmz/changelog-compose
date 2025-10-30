@@ -10,9 +10,7 @@
       "draft": false,
       "prerelease": false,
       "extra-files": [
-        {
-          "path": "gradle.properties"
-        }
+        "gradle.properties"
       ],
       "changelog-sections": [
         {
