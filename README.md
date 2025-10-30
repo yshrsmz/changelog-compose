@@ -13,9 +13,9 @@ A Jetpack Compose library for displaying changelogs in Android applications. Thi
 
 ## Requirements
 
-- **Min SDK**: 29 (Android 10)
+- **Min SDK**: 24 (Android 7.0)
 - **Kotlin**: 2.0.21+
-- **Jetpack Compose**: BOM 2024.09.00+
+- **Jetpack Compose**: UI 1.9.4+, Material3 1.4.0+
 
 ## Installation
 
@@ -23,7 +23,25 @@ Add the dependency to your app's `build.gradle.kts`:
 
 ```kotlin
 dependencies {
-    implementation(project(":changelog"))
+    implementation("com.codingfeline.changelog:changelog-compose:0.2.0")
+}
+```
+
+Or using version catalog in `gradle/libs.versions.toml`:
+
+```toml
+[versions]
+changelog-compose = "0.2.0"
+
+[libraries]
+changelog-compose = { module = "com.codingfeline.changelog:changelog-compose", version.ref = "changelog-compose" }
+```
+
+Then in your `build.gradle.kts`:
+
+```kotlin
+dependencies {
+    implementation(libs.changelog.compose)
 }
 ```
 
@@ -57,29 +75,21 @@ Use the `ChangelogContent` composable in your app:
 ```kotlin
 import com.codingfeline.changelog.ChangelogContent
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 
 @Composable
 fun ChangelogScreen() {
     ChangelogContent(
         changelogResId = R.raw.changelog,
-        onRetry = { /* Optional: handle retry action */ }
+        modifier = Modifier.fillMaxSize()
     )
 }
 ```
 
-### Customization
-
-The `ChangelogContent` composable supports several customization options:
-
-```kotlin
-ChangelogContent(
-    changelogResId = R.raw.changelog,
-    onRetry = { /* Retry callback */ },
-    modifier = Modifier.fillMaxSize(),
-    contentPadding = PaddingValues(16.dp), // Customize padding
-    retryLabel = "Try Again" // Customize retry button text
-)
-```
+The composable automatically handles:
+- **Loading state**: Shows a loading indicator while parsing the XML
+- **Error state**: Displays error message with retry button
+- **Success state**: Presents the changelog in a scrollable list
 
 ## XML Format
 
