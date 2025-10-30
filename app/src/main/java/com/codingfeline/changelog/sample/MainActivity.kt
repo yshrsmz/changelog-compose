@@ -58,10 +58,6 @@ fun ChangelogScreen() {
     ) { innerPadding ->
         ChangelogContent(
             changelogResId = R.raw.changelog,
-            onRetry = {
-                // Handle retry action if needed
-                // For example, you could show a toast or log
-            },
             modifier = Modifier.padding(innerPadding)
         )
     }
