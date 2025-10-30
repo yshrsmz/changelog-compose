@@ -1,0 +1,34 @@
+name: Release Please
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate GitHub App token
+        id: generate-token
+        uses: actions/create-github-app-token@67018539274d69449ef7c02e8e71183d1719ab42 # v2.1.4
+        with:
+          app-id: ${{ secrets.CHANGELOG_BOT_APP_ID }}
+          private-key: ${{ secrets.CHANGELOG_BOT_PRIVATE_KEY }}
+
+      - uses: googleapis/release-please-action@16a9c90856f42705d54a6fda1823352bdc62cf38 # v4.4.0
+        id: release
+        with:
+          # Release type determines which files get updated
+          release-type: simple
+          # Package name (must match the artifact)
+          package-name: changelog-compose
+          # Use PAT to trigger the release workflow
+          # Create a fine-grained PAT with:
+          # - Repository access: This repository
+          # - Permissions: Contents (Read and write), Pull requests (Read and write)
+          token: ${{ steps.generate-token.outputs.token }}
