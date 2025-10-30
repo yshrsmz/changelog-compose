@@ -17,13 +17,13 @@ import kotlinx.coroutines.launch
 import androidx.compose.runtime.Immutable
 
 @Immutable
-data class ChangelogUiState(
+internal data class ChangelogUiState(
     val changelog: Changelog = Changelog(emptyList()),
     val isLoading: Boolean = true,
     val error: String? = null,
 )
 
-class ChangelogViewModel(
+internal class ChangelogViewModel(
     private val changelogParser: ChangelogParser,
 ) : ViewModel() {
 

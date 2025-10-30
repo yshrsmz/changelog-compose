@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Changelog Sample"
+rootProject.name = "changelog-compose"
 include(":app")
 include(":changelog")

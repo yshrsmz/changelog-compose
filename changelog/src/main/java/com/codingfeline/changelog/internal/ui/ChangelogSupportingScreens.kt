@@ -22,7 +22,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun ChangelogLoadingContent(
+internal fun ChangelogLoadingContent(
     modifier: Modifier = Modifier,
 ) {
     Box(
@@ -34,7 +34,7 @@ fun ChangelogLoadingContent(
 }
 
 @Composable
-fun ChangelogErrorContent(
+internal fun ChangelogErrorContent(
     error: String,
     onRetry: () -> Unit,
     modifier: Modifier = Modifier,

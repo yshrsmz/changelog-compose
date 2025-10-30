@@ -3,24 +3,24 @@ package com.codingfeline.changelog.internal.ui
 import androidx.compose.runtime.Immutable
 
 @Immutable
-data class Changelog(
+internal data class Changelog(
     val releases: List<Release>,
 )
 
 @Immutable
-data class Release(
+internal data class Release(
     val versionName: String,
     val changeDate: String?,
     val changes: List<ChangeItem>,
 )
 
 @Immutable
-data class ChangeItem(
+internal data class ChangeItem(
     val text: String,
     val type: ChangeType? = null,
 )
 
-enum class ChangeType {
+internal enum class ChangeType {
     FIX,
     NEW,
     BREAKING,

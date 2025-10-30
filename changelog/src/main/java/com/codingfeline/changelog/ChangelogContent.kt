@@ -20,6 +20,18 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun ChangelogContent(
     @RawRes changelogResId: Int,
+    modifier: Modifier = Modifier,
+) {
+    ChangelogContent(
+        changelogResId = changelogResId,
+        onRetry = {},
+        modifier = modifier
+    )
+}
+
+@Composable
+internal fun ChangelogContent(
+    @RawRes changelogResId: Int,
     onRetry: () -> Unit,
     modifier: Modifier = Modifier,
     context: Context = LocalContext.current,

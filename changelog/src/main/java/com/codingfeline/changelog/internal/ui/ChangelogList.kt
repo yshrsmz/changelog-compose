@@ -59,7 +59,7 @@ private fun calculateLabelWidth(
 }
 
 @Composable
-fun ChangelogList(
+internal fun ChangelogList(
     changelog: Changelog,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(16.dp),

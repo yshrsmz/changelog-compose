@@ -10,7 +10,7 @@ import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserFactory
 import java.io.InputStreamReader
 
-class ChangelogParser(
+internal class ChangelogParser(
     context: Context,
 ) {
     private val context: Context = context.applicationContext
