@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/yshrsmz/changelog-compose/compare/changelog-compose-v0.2.0...changelog-compose-v0.2.1) (2025-10-30)
+
+
+### Documentation
+
+* update project documentation with latest information ([#11](https://github.com/yshrsmz/changelog-compose/issues/11)) ([ab70bf0](https://github.com/yshrsmz/changelog-compose/commit/ab70bf0dc51b5a9448f220bd2d70bfa085d55e8c))
+
 ## [0.2.0](https://github.com/yshrsmz/changelog-compose/compare/changelog-compose-v0.1.3...changelog-compose-v0.2.0) (2025-10-30)
 
 
