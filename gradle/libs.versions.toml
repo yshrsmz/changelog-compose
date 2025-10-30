@@ -32,6 +32,11 @@ androidx-compose-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
+mockk = { group = "io.mockk", name = "mockk", version = "1.14.6" }
+robolectric = { group = "org.robolectric", name = "robolectric", version = "4.16" }
+turbine = { group = "app.cash.turbine", name = "turbine", version = "1.2.1" }
+truth = { module = "com.google.truth:truth", version = "1.4.5" }
+androidx-arch-coretesting = { module = "androidx.arch.core:core-testing", version = "2.2.0" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

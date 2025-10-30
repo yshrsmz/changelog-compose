@@ -8,7 +8,6 @@ import com.codingfeline.changelog.internal.ui.Changelog
 import com.codingfeline.changelog.internal.parser.ChangelogParser
 import com.codingfeline.changelog.internal.ui.Release
 import com.codingfeline.changelog.internal.viewmodel.ChangelogViewModel
-import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -18,6 +17,7 @@ import kotlinx.coroutines.test.TestDispatcher
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.advanceUntilIdle
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.resetMain

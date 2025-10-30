@@ -51,6 +51,15 @@ dependencies {
 
     // Debug
     debugImplementation(libs.androidx.compose.ui.tooling)
+
+
+    testImplementation(libs.junit)
+    testImplementation(libs.truth)
+    testImplementation(libs.robolectric)
+    testImplementation(libs.mockk)
+    testImplementation(libs.turbine)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.androidx.arch.coretesting)
 }
 
 mavenPublishing {
