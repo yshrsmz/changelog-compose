@@ -17,6 +17,43 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 
+/**
+ * Displays a changelog parsed from an XML resource file.
+ *
+ * This composable automatically handles loading, error, and success states.
+ * The changelog is parsed from an XML file located in your app's `res/raw` directory.
+ *
+ * ## XML Format
+ *
+ * The expected XML format is:
+ * ```xml
+ * <changelog>
+ *     <changelogversion versionName="1.0.0" changeDate="2024-10-28">
+ *         <changelogtext type="new">New feature description</changelogtext>
+ *         <changelogtext type="fix">Bug fix description</changelogtext>
+ *         <changelogtext type="breaking">Breaking change</changelogtext>
+ *         <changelogtext>General change (no type)</changelogtext>
+ *     </changelogversion>
+ * </changelog>
+ * ```
+ *
+ * ## Usage Example
+ *
+ * ```kotlin
+ * @Composable
+ * fun MyScreen() {
+ *     ChangelogContent(
+ *         changelogResId = R.raw.changelog,
+ *         modifier = Modifier.fillMaxSize()
+ *     )
+ * }
+ * ```
+ *
+ * @param changelogResId The raw resource ID of the XML changelog file (e.g., `R.raw.changelog`).
+ *                       The file must be placed in `res/raw/` directory.
+ * @param modifier The [Modifier] to be applied to the root composable.
+ *                 Defaults to [Modifier] (no modifications).
+ */
 @Composable
 fun ChangelogContent(
     @RawRes changelogResId: Int,
