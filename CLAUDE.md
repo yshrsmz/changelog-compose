@@ -33,11 +33,12 @@ This is a multi-module Android project that provides a Jetpack Compose library f
 **Key Info:**
 - **Group ID**: `com.codingfeline.changelog`
 - **Artifact ID**: `changelog-compose`
-- **Min SDK**: 29 (Android 10)
+- **Min SDK**: 24 (Android 7.0) for library, 26 (Android 8.0) for sample app
 - **Target/Compile SDK**: 36
 - **Kotlin**: 2.0.21
 - **Java**: 11
-- **Compose BOM**: 2024.09.00
+- **Compose UI**: 1.9.4
+- **Material3**: 1.4.0
 
 ## Build Commands
 
@@ -226,6 +227,48 @@ The library includes consumer ProGuard rules via:
 ```kotlin
 consumerProguardFiles("consumer-rules.pro")
 ```
+
+## Git Commit Convention
+
+This project follows [Conventional Commits](https://www.conventionalcommits.org/) specification.
+
+**Commit Message Format:**
+```
+<type>(<scope>): <subject>
+
+<body>
+
+<footer>
+```
+
+**Types:**
+- `feat`: A new feature
+- `fix`: A bug fix
+- `docs`: Documentation only changes
+- `style`: Code style changes (formatting, missing semi colons, etc)
+- `refactor`: Code refactoring without changing functionality
+- `perf`: Performance improvements
+- `test`: Adding or updating tests
+- `chore`: Changes to build process or auxiliary tools
+- `ci`: Changes to CI configuration files and scripts
+
+**Scope:**
+- `changelog`: Changes to the `:changelog` library module
+- `app`: Changes to the `:app` sample application
+- Omit scope for project-wide changes
+
+**Examples:**
+```
+feat(changelog): add dark mode support
+fix(changelog): resolve XML parsing error for empty tags
+docs: update README with installation instructions
+chore: update dependencies to latest versions
+```
+
+**Pull Request Titles:**
+- PR titles must also follow the conventional commit format
+- Use the same format as commit messages: `type(scope): description`
+- Example: `feat(changelog): lower minSdk to 24`
 
 ## Security Notes
 
