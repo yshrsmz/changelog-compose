@@ -14,7 +14,7 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        minSdk = 29
+        minSdk = 24
         consumerProguardFiles("consumer-rules.pro")
     }
 
