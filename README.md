@@ -2,7 +2,9 @@
 
 A Jetpack Compose library for displaying changelogs in Android applications. This library parses XML-formatted changelog files and presents them with a clean, Material 3 UI.
 
-![screenshot](./assets/screenshot.png)
+<p align="center">
+  <img height="600" src="./assets/screenshot.png">
+</p>
 
 ## Features
 
