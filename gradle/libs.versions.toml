@@ -9,7 +9,7 @@ lifecycle = "2.9.4"
 activityCompose = "1.11.0"
 composeUi = "1.9.4"
 coroutines = "1.10.2"
-mavenPublish = "0.34.0"
+mavenPublish = "0.35.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
