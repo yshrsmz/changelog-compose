@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/yshrsmz/changelog-compose/compare/changelog-compose-v0.2.1...changelog-compose-v0.2.2) (2025-11-29)
+
+
+### Dependencies
+
+* update lifecycle to v2.10.0 ([#21](https://github.com/yshrsmz/changelog-compose/issues/21)) ([de5da9c](https://github.com/yshrsmz/changelog-compose/commit/de5da9ca827a7c6cd1dfc0ce65e6ca6a0311925f))
+
 ## [0.2.1](https://github.com/yshrsmz/changelog-compose/compare/changelog-compose-v0.2.0...changelog-compose-v0.2.1) (2025-10-30)
 
 
