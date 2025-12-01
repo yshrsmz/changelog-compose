@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.2.2](https://github.com/yshrsmz/changelog-compose/compare/changelog-compose-v0.2.1...changelog-compose-v0.2.2) (2025-12-01)
+
+
+### Bug Fixes
+
+* **deps:** update dependency androidx.activity:activity-compose to v1.12.0 ([#19](https://github.com/yshrsmz/changelog-compose/issues/19)) ([77b992a](https://github.com/yshrsmz/changelog-compose/commit/77b992a46660a639a9dc41324ff24184602aa1c3))
+
+
+### Dependencies
+
+* update composeui to v1.9.5 ([#18](https://github.com/yshrsmz/changelog-compose/issues/18)) ([0816533](https://github.com/yshrsmz/changelog-compose/commit/0816533850577d01257179236911b2c19e1e53b8))
+* update dependency androidx.lifecycle:lifecycle-viewmodel-compose to v2.10.0 ([#20](https://github.com/yshrsmz/changelog-compose/issues/20)) ([5c6cadb](https://github.com/yshrsmz/changelog-compose/commit/5c6cadbe7982ad97a70ce01d10c9db4bd2c78030))
+* update lifecycle to v2.10.0 ([#21](https://github.com/yshrsmz/changelog-compose/issues/21)) ([de5da9c](https://github.com/yshrsmz/changelog-compose/commit/de5da9ca827a7c6cd1dfc0ce65e6ca6a0311925f))
+
 ## [0.2.1](https://github.com/yshrsmz/changelog-compose/compare/changelog-compose-v0.2.0...changelog-compose-v0.2.1) (2025-10-30)
 
 
