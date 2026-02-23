@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.3](https://github.com/yshrsmz/changelog-compose/compare/changelog-compose-v0.2.2...changelog-compose-v0.2.3) (2026-02-23)
+
+
+### Bug Fixes
+
+* **deps:** update dependency androidx.compose.ui:ui-graphics to v1.10.1 ([#36](https://github.com/yshrsmz/changelog-compose/issues/36)) ([13edf2d](https://github.com/yshrsmz/changelog-compose/commit/13edf2d0395f8a4fa8cd4af50e5d13261a9bf48f))
+
 ## [0.2.2](https://github.com/yshrsmz/changelog-compose/compare/changelog-compose-v0.2.1...changelog-compose-v0.2.2) (2025-12-19)
 
 
