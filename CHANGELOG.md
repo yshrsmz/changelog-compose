@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.2.3](https://github.com/yshrsmz/changelog-compose/compare/changelog-compose-v0.2.2...changelog-compose-v0.2.3) (2026-05-17)
+
+
+### Bug Fixes
+
+* **deps:** update composeui to v1.11.1 ([#53](https://github.com/yshrsmz/changelog-compose/issues/53)) ([d2e8281](https://github.com/yshrsmz/changelog-compose/commit/d2e8281928d5dd9d9168fe1797b70b1fc68986d7))
+* **deps:** update dependency androidx.activity:activity-compose to v1.13.0 ([#59](https://github.com/yshrsmz/changelog-compose/issues/59)) ([14564a2](https://github.com/yshrsmz/changelog-compose/commit/14564a292488904c1fce8a89aad4c7f495d805f4))
+* **deps:** update dependency androidx.compose.ui:ui-graphics to v1.10.1 ([#36](https://github.com/yshrsmz/changelog-compose/issues/36)) ([13edf2d](https://github.com/yshrsmz/changelog-compose/commit/13edf2d0395f8a4fa8cd4af50e5d13261a9bf48f))
+* **deps:** update dependency androidx.core:core-ktx to v1.18.0 ([#60](https://github.com/yshrsmz/changelog-compose/issues/60)) ([e4f44f8](https://github.com/yshrsmz/changelog-compose/commit/e4f44f844afc907f4a9ac0e3fcb027a8b411930b))
+* **deps:** update dependency io.mockk:mockk to v1.14.9 ([#56](https://github.com/yshrsmz/changelog-compose/issues/56)) ([66b63df](https://github.com/yshrsmz/changelog-compose/commit/66b63df8adc1ad4538c4614aa5c9ab2cf44821bd))
+* **deps:** update dependency org.robolectric:robolectric to v4.16.1 ([#57](https://github.com/yshrsmz/changelog-compose/issues/57)) ([76dc713](https://github.com/yshrsmz/changelog-compose/commit/76dc71349a34a266f69310f3ea7ab67059b0719a))
+* **deps:** update kotlinx-coroutines monorepo to v1.11.0 ([#61](https://github.com/yshrsmz/changelog-compose/issues/61)) ([56ed4b0](https://github.com/yshrsmz/changelog-compose/commit/56ed4b05bcffb7500f6cb5852d56bece148c419e))
+
 ## [0.2.2](https://github.com/yshrsmz/changelog-compose/compare/changelog-compose-v0.2.1...changelog-compose-v0.2.2) (2025-12-19)
 
 
