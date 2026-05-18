@@ -2,7 +2,10 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "reviewers": ["yshrsmz"],
   "extends": [
-    "config:best-practices"
+    "github>yshrsmz/renovate-config",
+    "github>yshrsmz/renovate-config:github-actions",
+    "github>yshrsmz/renovate-config:kotlin",
+    "github>yshrsmz/renovate-config:android"
   ],
   "prConcurrentLimit": 3
 }
