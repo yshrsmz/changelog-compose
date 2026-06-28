@@ -18,7 +18,7 @@ outputs:
 runs:
   using: 'composite'
   steps:
-    - uses: yshrsmz/action-mise-values@bbf51a0cc5792662fd3e97a1ca453c036969dd3e # v0.2.5
+    - uses: yshrsmz/action-mise-values@670739629b870d0f845327d27cdf044f835bbe7d # v0.3.0
       id: mise
 
     - name: 'format value for actions/setup-java'
@@ -50,7 +50,7 @@ runs:
       run: mkdir -p ~/.gradle && cp .github/ci-gradle.properties ~/.gradle/gradle.properties
 
     - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@50e97c2cd7a37755bbfafc9c5b7cafaece252f6e # v6.1.0
+      uses: gradle/actions/setup-gradle@3f131e8634966bd73d06cc69884922b02e6faf92 # v6.2.0
       with:
         validate-wrappers: true
         cache-cleanup: on-success
