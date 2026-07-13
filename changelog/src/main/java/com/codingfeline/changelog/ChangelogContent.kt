@@ -49,20 +49,41 @@ import androidx.compose.ui.unit.dp
  * }
  * ```
  *
+ * ## Edge-to-Edge Support
+ *
+ * When placed inside a [androidx.compose.material3.Scaffold], pass the scaffold's
+ * `innerPadding` as [contentPadding] (instead of `Modifier.padding(innerPadding)`)
+ * so the list content scrolls behind the system bars:
+ *
+ * ```kotlin
+ * Scaffold { innerPadding ->
+ *     ChangelogContent(
+ *         changelogResId = R.raw.changelog,
+ *         modifier = Modifier.fillMaxSize(),
+ *         contentPadding = innerPadding
+ *     )
+ * }
+ * ```
+ *
  * @param changelogResId The raw resource ID of the XML changelog file (e.g., `R.raw.changelog`).
  *                       The file must be placed in `res/raw/` directory.
  * @param modifier The [Modifier] to be applied to the root composable.
  *                 Defaults to [Modifier] (no modifications).
+ * @param contentPadding The [PaddingValues] applied to the changelog list content.
+ *                       Defaults to `PaddingValues(16.dp)`. Note that passing a value
+ *                       replaces the default padding entirely.
  */
 @Composable
 fun ChangelogContent(
     @RawRes changelogResId: Int,
     modifier: Modifier = Modifier,
+    contentPadding: PaddingValues = PaddingValues(16.dp),
 ) {
     ChangelogContent(
         changelogResId = changelogResId,
         onRetry = {},
-        modifier = modifier
+        modifier = modifier,
+        contentPadding = contentPadding,
     )
 }
 

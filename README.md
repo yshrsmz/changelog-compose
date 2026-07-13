@@ -95,6 +95,25 @@ The composable automatically handles:
 - **Error state**: Displays error message with retry button
 - **Success state**: Presents the changelog in a scrollable list
 
+### Edge-to-Edge Support
+
+When using `ChangelogContent` inside a `Scaffold`, pass the scaffold's `innerPadding` as
+`contentPadding` (instead of `Modifier.padding(innerPadding)`) so the list content scrolls
+behind the system bars:
+
+```kotlin
+Scaffold { innerPadding ->
+    ChangelogContent(
+        changelogResId = R.raw.changelog,
+        modifier = Modifier.fillMaxSize(),
+        contentPadding = innerPadding
+    )
+}
+```
+
+`contentPadding` defaults to `PaddingValues(16.dp)`. Passing a value replaces the default
+padding entirely, so combine it with your own padding if needed.
+
 ## XML Format
 
 ### Root Element

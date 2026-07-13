@@ -1,0 +1,8 @@
+{
+	"scripts": {
+		"openspec": "openspec"
+	},
+	"devDependencies": {
+		"@fission-ai/openspec": "1.6.0"
+	}
+}
