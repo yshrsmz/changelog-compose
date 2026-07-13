@@ -1,2 +1,3 @@
 [tools]
 java = "temurin-17.0.19+10"
+node = "26"

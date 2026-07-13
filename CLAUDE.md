@@ -21,6 +21,16 @@ Keep this managed block so 'openspec update' can refresh the instructions.
 
 <!-- OPENSPEC:END -->
 
+## OpenSpec CLI
+
+The openspec CLI is managed locally via pnpm (`@fission-ai/openspec` in `package.json`).
+
+```bash
+pnpm run openspec validate <change-id> --strict
+```
+
+- Do not install openspec globally or run it via npx
+- Its postinstall script (shell-completion hint only) is intentionally disabled via `allowBuilds` in `pnpm-workspace.yaml` — do not approve builds for it
 
 ## Project Overview
 
