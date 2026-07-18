@@ -226,7 +226,7 @@ When adding dependencies, use the version catalog:
 ```kotlin
 // In build.gradle.kts
 dependencies {
-    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.core)
     implementation(libs.androidx.compose.material3)
 }
 ```
