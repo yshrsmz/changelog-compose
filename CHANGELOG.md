@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.1](https://github.com/yshrsmz/changelog-compose/compare/changelog-compose-v0.3.0...changelog-compose-v0.3.1) (2026-07-18)
+
+
+### Bug Fixes
+
+* **deps:** update composeui to v1.11.4 ([#72](https://github.com/yshrsmz/changelog-compose/issues/72)) ([5e3088b](https://github.com/yshrsmz/changelog-compose/commit/5e3088b0deeffb3fb9694ea7c0d8c1089fed74e2))
+* **deps:** update dependency androidx.core:core-ktx to v1.19.0 ([#76](https://github.com/yshrsmz/changelog-compose/issues/76)) ([ee462a7](https://github.com/yshrsmz/changelog-compose/commit/ee462a7ac6b6184212321ff8714453db7c268764))
+* **deps:** update dependency androidx.lifecycle:lifecycle-viewmodel-compose to v2.11.0 ([#77](https://github.com/yshrsmz/changelog-compose/issues/77)) ([ab58a33](https://github.com/yshrsmz/changelog-compose/commit/ab58a33e31059093bdcde0cd57a520cc00bb2a4e))
+* **deps:** update kotlin to v2.4.0 ([#80](https://github.com/yshrsmz/changelog-compose/issues/80)) ([548d9fa](https://github.com/yshrsmz/changelog-compose/commit/548d9fa9b7629d9a8aaf940cb4474721bad835a6))
+* **deps:** update kotlin to v2.4.10 ([#83](https://github.com/yshrsmz/changelog-compose/issues/83)) ([058d4d2](https://github.com/yshrsmz/changelog-compose/commit/058d4d238d2411a76f1a116a5b3272e545340046))
+* **deps:** update lifecycle to v2.11.0 ([#81](https://github.com/yshrsmz/changelog-compose/issues/81)) ([1994486](https://github.com/yshrsmz/changelog-compose/commit/1994486a695465fc05b9adc6173afe397c2e5e1f))
+
 ## [0.3.0](https://github.com/yshrsmz/changelog-compose/compare/changelog-compose-v0.2.2...changelog-compose-v0.3.0) (2026-07-13)
 
 
