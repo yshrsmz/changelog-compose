@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.codingfeline.changelog.sample"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.codingfeline.changelog.sample"
