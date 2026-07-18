@@ -44,7 +44,7 @@ This is a multi-module Android project that provides a Jetpack Compose library f
 - **Group ID**: `com.codingfeline.changelog`
 - **Artifact ID**: `changelog-compose`
 - **Min SDK**: 24 (Android 7.0) for library, 26 (Android 8.0) for sample app
-- **Target/Compile SDK**: 36
+- **Target SDK**: 36 / **Compile SDK**: 37
 - **Kotlin**: 2.0.21
 - **Java**: 11
 - **Compose UI**: 1.9.4
