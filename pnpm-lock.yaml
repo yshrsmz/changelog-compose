@@ -165,11 +165,11 @@ packages:
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
 
-  '@posthog/core@1.46.1':
-    resolution: {integrity: sha512-EoCFduRkvrg9E5ylMi4QnZCjlAdRJCq6tJouWfngBVR79XSI4iPvIWYA+CdzokAjk+TfSVBFVJ++4Im3r+T0Dg==}
+  '@posthog/core@1.46.9':
+    resolution: {integrity: sha512-EXO6y5ih+jBkTCpUCuYgQmajuDZuvy6vMvflkub6pLQyi0GPlCPWVSvZZkOeQw9e2MxoD5GteeGCt9R8+UJ/yQ==}
 
-  '@posthog/types@1.399.0':
-    resolution: {integrity: sha512-/WDwBzqIPko8VJ1B+0rlso2XQEz9+2sqtsY9Tqy3p1GhgTqsFakcz/PmMpAnA321LTEZVRcO6x5hAwABV4yrDw==}
+  '@posthog/types@1.402.2':
+    resolution: {integrity: sha512-ZZTiS4dLwF4/D0YTzS3gGSLFnhuNOY5yu4d9VGS9trGe5GW6FjIXo20p18K5BPW2RZSYSld8sdnSAY3AUXleUQ==}
 
   ansi-regex@5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
@@ -317,8 +317,8 @@ packages:
     resolution: {integrity: sha512-V7+vQEJ06Z+c5tSye8S+nHUfI51xoXIXjHQ99cQtKUkQqqO1kO/KCJUfZXuB47h/YBlDhah2H3hdUGXn8ie0oA==}
     engines: {node: '>=8.6'}
 
-  posthog-node@5.47.3:
-    resolution: {integrity: sha512-mhKaZOGLgD5aKKTj6xNRE2K9vRJnRIj4FNZeguDNnCR0k8RKJh71KO78+UqVdOONBsMzoqb01AD/B+TtsK7YSw==}
+  posthog-node@5.48.1:
+    resolution: {integrity: sha512-BxLX2SqGEQhPqCPTalpyo0RRv1NMbf7UaN7q9d/ED77ksD6XOmE7ko2vIKO8F0zPL1NtKxIi+DYXap9lvR0RaA==}
     engines: {node: ^20.20.0 || >=22.22.0}
     peerDependencies:
       rxjs: ^7.0.0
@@ -411,7 +411,7 @@ snapshots:
       cross-spawn: 7.0.6
       fast-glob: 3.3.3
       ora: 8.2.0
-      posthog-node: 5.47.3
+      posthog-node: 5.48.1
       yaml: 2.9.0
       zod: 4.4.3
     transitivePeerDependencies:
@@ -527,11 +527,11 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.20.1
 
-  '@posthog/core@1.46.1':
+  '@posthog/core@1.46.9':
     dependencies:
-      '@posthog/types': 1.399.0
+      '@posthog/types': 1.402.2
 
-  '@posthog/types@1.399.0': {}
+  '@posthog/types@1.402.2': {}
 
   ansi-regex@5.0.1: {}
 
@@ -655,9 +655,9 @@ snapshots:
 
   picomatch@2.3.2: {}
 
-  posthog-node@5.47.3:
+  posthog-node@5.48.1:
     dependencies:
-      '@posthog/core': 1.46.1
+      '@posthog/core': 1.46.9
 
   queue-microtask@1.2.3: {}
 
