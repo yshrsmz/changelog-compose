@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.2](https://github.com/yshrsmz/changelog-compose/compare/changelog-compose-v0.3.1...changelog-compose-v0.3.2) (2026-09-04)
+
+
+### Bug Fixes
+
+* **deps:** update composeui to v1.12.0 ([#99](https://github.com/yshrsmz/changelog-compose/issues/99)) ([25a7f52](https://github.com/yshrsmz/changelog-compose/commit/25a7f52fda079c891fbd33da94741dc30440706b))
+
 ## [0.3.1](https://github.com/yshrsmz/changelog-compose/compare/changelog-compose-v0.3.0...changelog-compose-v0.3.1) (2026-07-18)
 
 
