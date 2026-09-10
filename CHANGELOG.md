@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.2](https://github.com/yshrsmz/changelog-compose/compare/changelog-compose-v0.3.1...changelog-compose-v0.3.2) (2026-09-10)
+
+
+### Bug Fixes
+
+* **deps:** update composeui to v1.12.0 ([#99](https://github.com/yshrsmz/changelog-compose/issues/99)) ([25a7f52](https://github.com/yshrsmz/changelog-compose/commit/25a7f52fda079c891fbd33da94741dc30440706b))
+
+
+### Documentation
+
+* **openspec:** replace changelog-display placeholder Purpose ([#110](https://github.com/yshrsmz/changelog-compose/issues/110)) ([be15de1](https://github.com/yshrsmz/changelog-compose/commit/be15de149fd70f973470f2e68330a9e5fb7d500c))
+
 ## [0.3.1](https://github.com/yshrsmz/changelog-compose/compare/changelog-compose-v0.3.0...changelog-compose-v0.3.1) (2026-07-18)
 
 
