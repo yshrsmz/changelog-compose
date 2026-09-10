@@ -2,8 +2,8 @@
 
 ## Purpose
 Android アプリ内で変更履歴（changelog）を表示する Compose UI を提供する。
-`res/raw` に置いた XML 形式の変更履歴を読み込み、リリースバージョンごとにまとめて、変更種別（FIX / NEW / BREAKING）とともに Material 3 のリストとして描画する。
-公開 API である `ChangelogContent` composable は、利用側アプリのレイアウトに合わせて余白などの表示を調整できることを保証し、edge-to-edge 構成の `Scaffold` に組み込んでもコンテンツがシステムバーと干渉しないようにする。
+`res/raw` に置いた XML 形式の変更履歴を読み込み、リリースバージョンごとにまとめ、必要に応じて変更種別（FIX / NEW / BREAKING）を表示しつつ Material 3 のリストとして描画する。
+公開 API である `ChangelogContent` composable は `contentPadding` で余白などの表示を調整でき、`Scaffold` の `innerPadding` を渡すことで edge-to-edge 構成でもコンテンツがシステムバーと干渉しないようにする。
 ## Requirements
 ### Requirement: Public contentPadding parameter
 
