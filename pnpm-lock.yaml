@@ -9,13 +9,13 @@ importers:
   .:
     devDependencies:
       '@fission-ai/openspec':
-        specifier: 1.10.0
-        version: 1.10.0
+        specifier: 1.11.0
+        version: 1.11.0
 
 packages:
 
-  '@fission-ai/openspec@1.10.0':
-    resolution: {integrity: sha512-fuL3Rz7Jv+NnHeUM1XkbaXFo4bUdPttOWOC66/6SyfJr9rPOvGE47oBp+8XdDtPiiWZawa0Z9RDzGasetFu2eQ==}
+  '@fission-ai/openspec@1.11.0':
+    resolution: {integrity: sha512-P9h8H4Snit8I7tHmCopjg3QDwBllIlObxb+/DebvBwhWTj6YEPPYRYkC4n5GqG4PdQnKMA6E1AlEOI9FT4G7FA==}
     engines: {node: '>=20.19.0'}
     hasBin: true
 
@@ -209,6 +209,10 @@ packages:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
     engines: {node: '>= 8'}
 
+  diff@9.0.0:
+    resolution: {integrity: sha512-svtcdpS8CgJyqAjEQIXdb3OjhFVVYjzGAPO8WGCmRbrml64SPw/jJD4GoE98aR7r25A0XcgrK3F02yw9R/vhQw==}
+    engines: {node: '>=0.3.1'}
+
   fast-glob@3.3.3:
     resolution: {integrity: sha512-7MptL8U0cqcFdzIzwOTHoilX9x5BrNqye7Z/LuC7kCMRio1EMSyqRK3BEAUD7sXRq4iT4AzTVuZdhgQ2TCvYLg==}
     engines: {node: '>=8.6.0'}
@@ -364,13 +368,14 @@ packages:
 
 snapshots:
 
-  '@fission-ai/openspec@1.10.0':
+  '@fission-ai/openspec@1.11.0':
     dependencies:
       '@inquirer/core': 11.2.1
       '@inquirer/prompts': 8.7.1
       chalk: 5.6.2
       commander: 14.0.3
       cross-spawn: 7.0.6
+      diff: 9.0.0
       fast-glob: 3.3.3
       ora: 9.4.1
       yaml: 2.9.0
@@ -516,6 +521,8 @@ snapshots:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
+
+  diff@9.0.0: {}
 
   fast-glob@3.3.3:
     dependencies:
