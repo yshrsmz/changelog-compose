@@ -25,9 +25,10 @@ A Jetpack Compose library for displaying changelogs in Android applications. Thi
 
 Add the dependency to your app's `build.gradle.kts`:
 
+<!-- x-release-please-start-version -->
 ```kotlin
 dependencies {
-    implementation("com.codingfeline.changelog:changelog-compose:0.2.0")
+    implementation("com.codingfeline.changelog:changelog-compose:0.4.0")
 }
 ```
 
@@ -35,11 +36,12 @@ Or using version catalog in `gradle/libs.versions.toml`:
 
 ```toml
 [versions]
-changelog-compose = "0.2.0"
+changelog-compose = "0.4.0"
 
 [libraries]
 changelog-compose = { module = "com.codingfeline.changelog:changelog-compose", version.ref = "changelog-compose" }
 ```
+<!-- x-release-please-end -->
 
 Then in your `build.gradle.kts`:
 
