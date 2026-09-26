@@ -12,7 +12,7 @@ A Jetpack Compose library for displaying changelogs in Android applications. Thi
 - **XML Parser**: Reads changelog from XML files in your `res/raw` resources
 - **Change Types**: Support for categorized changes (FIX, NEW, BREAKING)
 - **Built-in States**: Automatic handling of loading and error states with retry
-- **Customizable**: Configurable padding and labels
+- **Customizable**: Configurable padding and error-state labels
 - **Version Grouping**: Organizes changes by release version with optional dates
 
 ## Requirements
@@ -113,6 +113,28 @@ Scaffold { innerPadding ->
 
 `contentPadding` defaults to `PaddingValues(16.dp)`. Passing a value replaces the default
 padding entirely, so combine it with your own padding if needed.
+
+### Customizing Labels
+
+The texts shown when loading fails (the retry button and the error messages) can be replaced
+through `labels`, e.g. with localized strings from your resources:
+
+```kotlin
+ChangelogContent(
+    changelogResId = R.raw.changelog,
+    labels = ChangelogLabels(
+        retry = stringResource(R.string.changelog_retry),
+        errorResourceNotFound = stringResource(R.string.changelog_error_not_found),
+        errorInvalidFormat = stringResource(R.string.changelog_error_invalid_format),
+        errorReadFailed = stringResource(R.string.changelog_error_read_failed)
+    )
+)
+```
+
+Every text defaults to the built-in English text, so you only need to pass the ones you want to
+replace. For `errorInvalidFormat` and `errorReadFailed`, the underlying error message is appended as
+`"<text>: <message>"` when available. The change type badges (`NEW`, `FIX`, `BREAKING`) are not
+customizable.
 
 ## XML Format
 

@@ -7,7 +7,10 @@ import com.codingfeline.changelog.internal.ui.ChangeType
 import com.codingfeline.changelog.internal.ui.Changelog
 import com.codingfeline.changelog.internal.parser.ChangelogParser
 import com.codingfeline.changelog.internal.ui.Release
+import com.codingfeline.changelog.internal.viewmodel.ChangelogError
 import com.codingfeline.changelog.internal.viewmodel.ChangelogViewModel
+import android.content.res.Resources
+import java.io.IOException
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -116,7 +119,37 @@ class ChangelogViewModelTest {
         val finalState = viewModel.uiState.value
         assertThat(finalState.isLoading).isFalse()
         assertThat(finalState.changelog).isEqualTo(Changelog(emptyList()))
-        assertThat(finalState.error).isEqualTo("Invalid changelog format: ${exception.message}")
+        assertThat(finalState.error).isEqualTo(ChangelogError.InvalidFormat(exception.message))
+    }
+
+    @Test
+    fun `viewModel handles missing resource`() = runTest {
+        // Given
+        coEvery { changelogParser.parseChangelog(testResourceId) } throws Resources.NotFoundException("missing")
+
+        // When
+        viewModel.loadChangelog(testResourceId)
+        advanceUntilIdle()
+
+        // Then
+        val finalState = viewModel.uiState.value
+        assertThat(finalState.isLoading).isFalse()
+        assertThat(finalState.error).isEqualTo(ChangelogError.ResourceNotFound)
+    }
+
+    @Test
+    fun `viewModel handles read failure`() = runTest {
+        // Given
+        coEvery { changelogParser.parseChangelog(testResourceId) } throws IOException("stream closed")
+
+        // When
+        viewModel.loadChangelog(testResourceId)
+        advanceUntilIdle()
+
+        // Then
+        val finalState = viewModel.uiState.value
+        assertThat(finalState.isLoading).isFalse()
+        assertThat(finalState.error).isEqualTo(ChangelogError.ReadFailed("stream closed"))
     }
 
     @Test

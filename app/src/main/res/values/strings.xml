@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">Changelog Sample</string>
+    <string name="app_name" translatable="false">Changelog Sample</string>
+    <string name="changelog_retry">Retry</string>
+    <string name="changelog_error_not_found">Changelog resource not found</string>
+    <string name="changelog_error_invalid_format">Invalid changelog format</string>
+    <string name="changelog_error_read_failed">Failed to read changelog</string>
 </resources>

@@ -8,6 +8,7 @@ import com.codingfeline.changelog.internal.parser.ChangelogParser
 import com.codingfeline.changelog.internal.ui.ChangelogErrorContent
 import com.codingfeline.changelog.internal.ui.ChangelogList
 import com.codingfeline.changelog.internal.ui.ChangelogLoadingContent
+import com.codingfeline.changelog.internal.ui.toText
 import com.codingfeline.changelog.internal.viewmodel.ChangelogViewModel
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
@@ -72,18 +73,22 @@ import androidx.compose.ui.unit.dp
  * @param contentPadding The [PaddingValues] applied to the changelog list content.
  *                       Defaults to `PaddingValues(16.dp)`. Note that passing a value
  *                       replaces the default padding entirely.
+ * @param labels The texts displayed in the error state (retry button and error messages).
+ *               Defaults to the built-in English texts. See [ChangelogLabels].
  */
 @Composable
 fun ChangelogContent(
     @RawRes changelogResId: Int,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(16.dp),
+    labels: ChangelogLabels = ChangelogLabels(),
 ) {
     ChangelogContent(
         changelogResId = changelogResId,
         onRetry = {},
         modifier = modifier,
         contentPadding = contentPadding,
+        labels = labels,
     )
 }
 
@@ -99,7 +104,7 @@ internal fun ChangelogContent(
         ),
     ),
     contentPadding: PaddingValues = PaddingValues(16.dp),
-    retryLabel: String = "Retry",
+    labels: ChangelogLabels = ChangelogLabels(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -114,13 +119,13 @@ internal fun ChangelogContent(
 
         uiState.error != null -> {
             ChangelogErrorContent(
-                error = uiState.error ?: "Unknown error",
+                error = uiState.error?.toText(labels).orEmpty(),
                 onRetry = {
                     onRetry()
                     viewModel.retry(changelogResId)
                 },
                 modifier = modifier,
-                retryLabel = retryLabel,
+                retryLabel = labels.retry,
             )
         }
 
