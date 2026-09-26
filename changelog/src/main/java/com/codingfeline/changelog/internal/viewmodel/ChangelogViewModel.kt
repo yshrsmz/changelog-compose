@@ -52,27 +52,14 @@ internal class ChangelogViewModel(
                         error = null,
                     )
                 }
-            } catch (e: Resources.NotFoundException) {
-                _uiState.update {
-                    it.copy(
-                        isLoading = false,
-                        error = ChangelogError.ResourceNotFound,
-                    )
+            } catch (e: Exception) {
+                val error = when (e) {
+                    is Resources.NotFoundException -> ChangelogError.ResourceNotFound
+                    is XmlPullParserException -> ChangelogError.InvalidFormat(e.message)
+                    is IOException -> ChangelogError.ReadFailed(e.message)
+                    else -> throw e
                 }
-            } catch (e: XmlPullParserException) {
-                _uiState.update {
-                    it.copy(
-                        isLoading = false,
-                        error = ChangelogError.InvalidFormat(e.message),
-                    )
-                }
-            } catch (e: IOException) {
-                _uiState.update {
-                    it.copy(
-                        isLoading = false,
-                        error = ChangelogError.ReadFailed(e.message),
-                    )
-                }
+                _uiState.update { it.copy(isLoading = false, error = error) }
             }
         }
     }

@@ -8,7 +8,6 @@ import com.codingfeline.changelog.internal.parser.ChangelogParser
 import com.codingfeline.changelog.internal.ui.ChangelogErrorContent
 import com.codingfeline.changelog.internal.ui.ChangelogList
 import com.codingfeline.changelog.internal.ui.ChangelogLoadingContent
-import com.codingfeline.changelog.internal.ui.toText
 import com.codingfeline.changelog.internal.viewmodel.ChangelogViewModel
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
@@ -104,7 +103,7 @@ internal fun ChangelogContent(
         ),
     ),
     contentPadding: PaddingValues = PaddingValues(16.dp),
-    labels: ChangelogLabels = ChangelogLabels(),
+    labels: ChangelogLabels,
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -112,20 +111,22 @@ internal fun ChangelogContent(
         viewModel.loadChangelog(changelogResId)
     }
 
+    val error = uiState.error
+
     when {
         uiState.isLoading -> {
             ChangelogLoadingContent(modifier = modifier)
         }
 
-        uiState.error != null -> {
+        error != null -> {
             ChangelogErrorContent(
-                error = uiState.error?.toText(labels).orEmpty(),
+                error = error,
+                labels = labels,
                 onRetry = {
                     onRetry()
                     viewModel.retry(changelogResId)
                 },
                 modifier = modifier,
-                retryLabel = labels.retry,
             )
         }
 

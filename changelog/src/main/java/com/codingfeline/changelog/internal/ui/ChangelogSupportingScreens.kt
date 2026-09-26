@@ -46,9 +46,9 @@ private fun String.withDetail(detail: String?): String =
 
 @Composable
 internal fun ChangelogErrorContent(
-    error: String,
+    error: ChangelogError,
+    labels: ChangelogLabels,
     onRetry: () -> Unit,
-    retryLabel: String,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -68,7 +68,7 @@ internal fun ChangelogErrorContent(
         Spacer(modifier = Modifier.height(16.dp))
 
         Text(
-            text = error,
+            text = error.toText(labels),
             style = MaterialTheme.typography.bodyLarge,
             textAlign = TextAlign.Center,
         )
@@ -76,7 +76,7 @@ internal fun ChangelogErrorContent(
         Spacer(modifier = Modifier.height(24.dp))
 
         Button(onClick = onRetry) {
-            Text(text = retryLabel)
+            Text(text = labels.retry)
         }
     }
 }
