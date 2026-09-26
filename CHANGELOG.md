@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/yshrsmz/changelog-compose/compare/changelog-compose-v0.4.0...changelog-compose-v0.4.1) (2026-09-26)
+
+
+### Documentation
+
+* update README install version to 0.4.0 ([#119](https://github.com/yshrsmz/changelog-compose/issues/119)) ([3acf698](https://github.com/yshrsmz/changelog-compose/commit/3acf698e1a57b9bf6e50cf6483070499c06a0999))
+
 ## [0.4.0](https://github.com/yshrsmz/changelog-compose/compare/changelog-compose-v0.3.1...changelog-compose-v0.4.0) (2026-09-26)
 
 
