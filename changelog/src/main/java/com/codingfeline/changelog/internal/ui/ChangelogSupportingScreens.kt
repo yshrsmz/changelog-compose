@@ -9,7 +9,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.ui.res.painterResource
+import com.codingfeline.changelog.ChangelogLabels
 import com.codingfeline.changelog.R
+import com.codingfeline.changelog.internal.viewmodel.ChangelogError
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
@@ -33,12 +35,21 @@ internal fun ChangelogLoadingContent(
     }
 }
 
+internal fun ChangelogError.toText(labels: ChangelogLabels): String = when (this) {
+    ChangelogError.ResourceNotFound -> labels.errorResourceNotFound
+    is ChangelogError.InvalidFormat -> labels.errorInvalidFormat.withDetail(message)
+    is ChangelogError.ReadFailed -> labels.errorReadFailed.withDetail(message)
+}
+
+private fun String.withDetail(detail: String?): String =
+    if (detail == null) this else "$this: $detail"
+
 @Composable
 internal fun ChangelogErrorContent(
-    error: String,
+    error: ChangelogError,
+    labels: ChangelogLabels,
     onRetry: () -> Unit,
     modifier: Modifier = Modifier,
-    retryLabel: String = "Retry",
 ) {
     Column(
         modifier = modifier
@@ -57,7 +68,7 @@ internal fun ChangelogErrorContent(
         Spacer(modifier = Modifier.height(16.dp))
 
         Text(
-            text = error,
+            text = error.toText(labels),
             style = MaterialTheme.typography.bodyLarge,
             textAlign = TextAlign.Center,
         )
@@ -65,7 +76,7 @@ internal fun ChangelogErrorContent(
         Spacer(modifier = Modifier.height(24.dp))
 
         Button(onClick = onRetry) {
-            Text(text = retryLabel)
+            Text(text = labels.retry)
         }
     }
 }

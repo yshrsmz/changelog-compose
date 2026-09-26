@@ -17,10 +17,17 @@ import kotlinx.coroutines.launch
 import androidx.compose.runtime.Immutable
 
 @Immutable
+internal sealed interface ChangelogError {
+    data object ResourceNotFound : ChangelogError
+    data class InvalidFormat(val message: String?) : ChangelogError
+    data class ReadFailed(val message: String?) : ChangelogError
+}
+
+@Immutable
 internal data class ChangelogUiState(
     val changelog: Changelog = Changelog(emptyList()),
     val isLoading: Boolean = true,
-    val error: String? = null,
+    val error: ChangelogError? = null,
 )
 
 internal class ChangelogViewModel(
@@ -45,27 +52,14 @@ internal class ChangelogViewModel(
                         error = null,
                     )
                 }
-            } catch (e: Resources.NotFoundException) {
-                _uiState.update {
-                    it.copy(
-                        isLoading = false,
-                        error = "Changelog resource not found",
-                    )
+            } catch (e: Exception) {
+                val error = when (e) {
+                    is Resources.NotFoundException -> ChangelogError.ResourceNotFound
+                    is XmlPullParserException -> ChangelogError.InvalidFormat(e.message)
+                    is IOException -> ChangelogError.ReadFailed(e.message)
+                    else -> throw e
                 }
-            } catch (e: XmlPullParserException) {
-                _uiState.update {
-                    it.copy(
-                        isLoading = false,
-                        error = "Invalid changelog format: ${e.message}",
-                    )
-                }
-            } catch (e: IOException) {
-                _uiState.update {
-                    it.copy(
-                        isLoading = false,
-                        error = "Failed to read changelog: ${e.message}",
-                    )
-                }
+                _uiState.update { it.copy(isLoading = false, error = error) }
             }
         }
     }

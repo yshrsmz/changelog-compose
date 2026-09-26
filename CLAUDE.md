@@ -31,6 +31,16 @@ pnpm run openspec validate <change-id> --strict
 
 - Do not install openspec globally or run it via npx
 - Its postinstall script (shell-completion hint only) is intentionally disabled via `allowBuilds` in `pnpm-workspace.yaml` — do not approve builds for it
+- To validate all specs (e.g. after archiving), use `pnpm run openspec validate --specs --strict`. `validate --strict` without an item or `--specs` prompts interactively and fails in non-interactive shells
+
+## OpenSpec Change Workflow
+
+Handle one OpenSpec change in a single PR, from proposal to archive. This overrides the "archive in a separate PR after deployment" guidance in `openspec/AGENTS.md` (precedents: #70, #118).
+
+1. Commit the proposal (`openspec/changes/<change-id>/`) on a feature branch and open a draft PR
+2. After the proposal is approved, implement it on the same branch
+3. Once implementation is complete, run the `/simplify` skill, then run `/code-review medium` in a separate context (a forked/background agent, not the implementing context)
+4. Archive the change in the same PR (`pnpm run openspec archive <change-id> --yes`), then validate with `--specs --strict`
 
 ## Project Overview
 

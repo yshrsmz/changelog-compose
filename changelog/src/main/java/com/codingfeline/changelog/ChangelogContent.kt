@@ -72,18 +72,22 @@ import androidx.compose.ui.unit.dp
  * @param contentPadding The [PaddingValues] applied to the changelog list content.
  *                       Defaults to `PaddingValues(16.dp)`. Note that passing a value
  *                       replaces the default padding entirely.
+ * @param labels The texts displayed in the error state (retry button and error messages).
+ *               Defaults to the built-in English texts. See [ChangelogLabels].
  */
 @Composable
 fun ChangelogContent(
     @RawRes changelogResId: Int,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(16.dp),
+    labels: ChangelogLabels = ChangelogLabels(),
 ) {
     ChangelogContent(
         changelogResId = changelogResId,
         onRetry = {},
         modifier = modifier,
         contentPadding = contentPadding,
+        labels = labels,
     )
 }
 
@@ -99,7 +103,7 @@ internal fun ChangelogContent(
         ),
     ),
     contentPadding: PaddingValues = PaddingValues(16.dp),
-    retryLabel: String = "Retry",
+    labels: ChangelogLabels,
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -107,20 +111,22 @@ internal fun ChangelogContent(
         viewModel.loadChangelog(changelogResId)
     }
 
+    val error = uiState.error
+
     when {
         uiState.isLoading -> {
             ChangelogLoadingContent(modifier = modifier)
         }
 
-        uiState.error != null -> {
+        error != null -> {
             ChangelogErrorContent(
-                error = uiState.error ?: "Unknown error",
+                error = error,
+                labels = labels,
                 onRetry = {
                     onRetry()
                     viewModel.retry(changelogResId)
                 },
                 modifier = modifier,
-                retryLabel = retryLabel,
             )
         }
 

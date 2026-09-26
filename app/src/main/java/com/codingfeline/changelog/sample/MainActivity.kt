@@ -18,9 +18,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.codingfeline.changelog.ChangelogContent
+import com.codingfeline.changelog.ChangelogLabels
 import com.codingfeline.changelog.sample.ui.theme.ChangelogSampleTheme
 
 class MainActivity : ComponentActivity() {
@@ -69,6 +71,12 @@ fun ChangelogScreen() {
                 top = innerPadding.calculateTopPadding(),
                 end = innerPadding.calculateEndPadding(layoutDirection) + 16.dp,
                 bottom = innerPadding.calculateBottomPadding()
+            ),
+            labels = ChangelogLabels(
+                retry = stringResource(R.string.changelog_retry),
+                errorResourceNotFound = stringResource(R.string.changelog_error_not_found),
+                errorInvalidFormat = stringResource(R.string.changelog_error_invalid_format),
+                errorReadFailed = stringResource(R.string.changelog_error_read_failed)
             )
         )
     }
