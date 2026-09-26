@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.4.0](https://github.com/yshrsmz/changelog-compose/compare/changelog-compose-v0.3.1...changelog-compose-v0.4.0) (2026-09-26)
+
+
+### Features
+
+* **changelog:** make ChangelogContent labels customizable ([#118](https://github.com/yshrsmz/changelog-compose/issues/118)) ([0b89a83](https://github.com/yshrsmz/changelog-compose/commit/0b89a8366b4965385f9d59fdf0d8b8af4cd74c29))
+
+
+### Bug Fixes
+
+* **deps:** update composeui to v1.12.0 ([#99](https://github.com/yshrsmz/changelog-compose/issues/99)) ([25a7f52](https://github.com/yshrsmz/changelog-compose/commit/25a7f52fda079c891fbd33da94741dc30440706b))
+* **deps:** update composeui to v1.12.1 ([#115](https://github.com/yshrsmz/changelog-compose/issues/115)) ([373a178](https://github.com/yshrsmz/changelog-compose/commit/373a178d737b5cc8945cc11851445c19ae78cb10))
+* **deps:** update kotlin to v2.4.20 ([#116](https://github.com/yshrsmz/changelog-compose/issues/116)) ([8a2a5c5](https://github.com/yshrsmz/changelog-compose/commit/8a2a5c506c611c43367214e9496c0e7e398d93a8))
+
+
+### Documentation
+
+* **openspec:** replace changelog-display placeholder Purpose ([#110](https://github.com/yshrsmz/changelog-compose/issues/110)) ([be15de1](https://github.com/yshrsmz/changelog-compose/commit/be15de149fd70f973470f2e68330a9e5fb7d500c))
+
 ## [0.3.1](https://github.com/yshrsmz/changelog-compose/compare/changelog-compose-v0.3.0...changelog-compose-v0.3.1) (2026-07-18)
 
 
