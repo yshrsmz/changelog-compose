@@ -28,7 +28,7 @@ Add the dependency to your app's `build.gradle.kts`:
 <!-- x-release-please-start-version -->
 ```kotlin
 dependencies {
-    implementation("com.codingfeline.changelog:changelog-compose:0.4.0")
+    implementation("com.codingfeline.changelog:changelog-compose:0.4.1")
 }
 ```
 
@@ -36,7 +36,7 @@ Or using version catalog in `gradle/libs.versions.toml`:
 
 ```toml
 [versions]
-changelog-compose = "0.4.0"
+changelog-compose = "0.4.1"
 
 [libraries]
 changelog-compose = { module = "com.codingfeline.changelog:changelog-compose", version.ref = "changelog-compose" }
