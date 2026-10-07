@@ -9,13 +9,13 @@ importers:
   .:
     devDependencies:
       '@fission-ai/openspec':
-        specifier: 1.13.0
-        version: 1.13.0
+        specifier: 1.13.2
+        version: 1.13.2
 
 packages:
 
-  '@fission-ai/openspec@1.13.0':
-    resolution: {integrity: sha512-1b1VbjELIUHPz8BLnkVxqPu4pAYS6BhfrLcmUIM7Bd0iJXQDvE+e/LBofE1kydegfxmG7R1xCMRXsl5VtZD+0w==}
+  '@fission-ai/openspec@1.13.2':
+    resolution: {integrity: sha512-HzBaN9C1/ET+tgm/pxbWQYY4Kf+X9/1MSVEGQ8ZT3g4ZpdHn6v82CHkN+zmt9qv98Ghw0MDpmURasjJD2f90bg==}
     engines: {node: '>=20.19.0'}
     hasBin: true
 
@@ -34,15 +34,6 @@ packages:
 
   '@inquirer/confirm@6.3.2':
     resolution: {integrity: sha512-Xvr/0HggjddPtGppuqVmxhTw+Hr8PvsZ/k0HmOEaAqQEt80OITNkFWnsdNmyT0/eM4Ab+iJLx2R8rctlEyfSVg==}
-    engines: {node: '>=23.5.0 || ^22.13.0 || ^20.17.0'}
-    peerDependencies:
-      '@types/node': '>=18'
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-
-  '@inquirer/core@11.2.1':
-    resolution: {integrity: sha512-Qd6GJT1yVyrZZCfN8W2qKF5ApmqryXRhRKCuip8h01x2w/esJQ2XIYc6f9abMIHgKQdBfFTSOdbHRLAhuM09UA==}
     engines: {node: '>=23.5.0 || ^22.13.0 || ^20.17.0'}
     peerDependencies:
       '@types/node': '>=18'
@@ -368,9 +359,9 @@ packages:
 
 snapshots:
 
-  '@fission-ai/openspec@1.13.0':
+  '@fission-ai/openspec@1.13.2':
     dependencies:
-      '@inquirer/core': 11.2.1
+      '@inquirer/core': 12.0.3
       '@inquirer/prompts': 8.7.2
       chalk: 5.6.2
       commander: 14.0.3
@@ -396,16 +387,6 @@ snapshots:
     dependencies:
       '@inquirer/core': 12.0.3
       '@inquirer/type': 4.1.1
-
-  '@inquirer/core@11.2.1':
-    dependencies:
-      '@inquirer/ansi': 2.0.8
-      '@inquirer/figures': 2.0.9
-      '@inquirer/type': 4.1.1
-      cli-width: 4.1.0
-      fast-wrap-ansi: 0.2.2
-      mute-stream: 3.0.0
-      signal-exit: 4.1.0
 
   '@inquirer/core@12.0.3':
     dependencies:
