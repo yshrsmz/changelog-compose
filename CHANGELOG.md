@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.4.1](https://github.com/yshrsmz/changelog-compose/compare/changelog-compose-v0.4.0...changelog-compose-v0.4.1) (2026-10-09)
+
+
+### Bug Fixes
+
+* **deps:** update dependency org.robolectric:robolectric to v4.17 ([#121](https://github.com/yshrsmz/changelog-compose/issues/121)) ([376248c](https://github.com/yshrsmz/changelog-compose/commit/376248c3380642ba69f3c837d2c0ac670a0f5912))
+
+
+### Documentation
+
+* update README install version to 0.4.0 ([#119](https://github.com/yshrsmz/changelog-compose/issues/119)) ([3acf698](https://github.com/yshrsmz/changelog-compose/commit/3acf698e1a57b9bf6e50cf6483070499c06a0999))
+
 ## [0.4.0](https://github.com/yshrsmz/changelog-compose/compare/changelog-compose-v0.3.1...changelog-compose-v0.4.0) (2026-09-26)
 
 
