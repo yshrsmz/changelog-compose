@@ -29,6 +29,7 @@ class ChangelogErrorTextTest {
             errorReadFailed = "変更履歴を読み込めません",
         )
 
+        assertThat(labels.retry).isEqualTo("再試行")
         assertThat(ChangelogError.ResourceNotFound.toText(labels))
             .isEqualTo("変更履歴が見つかりません")
         assertThat(ChangelogError.InvalidFormat("unexpected tag").toText(labels))
@@ -52,6 +53,21 @@ class ChangelogErrorTextTest {
                 errorReadFailed = "変更履歴を読み込めません",
             ),
         )
+    }
+
+    @Test
+    fun `labels differing in any text are not equal`() {
+        val variants = listOf(
+            ChangelogLabels.Default.copy(retry = "x"),
+            ChangelogLabels.Default.copy(errorResourceNotFound = "x"),
+            ChangelogLabels.Default.copy(errorInvalidFormat = "x"),
+            ChangelogLabels.Default.copy(errorReadFailed = "x"),
+        )
+
+        variants.forEach { variant ->
+            assertThat(variant).isNotEqualTo(ChangelogLabels.Default)
+            assertThat(variant.hashCode()).isNotEqualTo(ChangelogLabels.Default.hashCode())
+        }
     }
 
     @Test
