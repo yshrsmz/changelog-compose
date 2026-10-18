@@ -118,8 +118,7 @@ padding entirely, so combine it with your own padding if needed.
 
 ### Customizing Labels
 
-The texts shown when loading fails (the retry button and the error messages) can be replaced
-through `labels`, e.g. with localized strings from your resources:
+The texts shown when loading fails (the retry button and the error messages) can be replaced through `labels`, e.g. with localized strings from your resources:
 
 ```kotlin
 ChangelogContent(
@@ -133,10 +132,17 @@ ChangelogContent(
 )
 ```
 
-Every text defaults to the built-in English text, so you only need to pass the ones you want to
-replace. For `errorInvalidFormat` and `errorReadFailed`, the underlying error message is appended as
-`"<text>: <message>"` when available. The change type badges (`NEW`, `FIX`, `BREAKING`) are not
-customizable.
+The `ChangelogLabels` constructor requires every text, so a forgotten text (or one added in a later version of the library) is a compile error instead of silently showing up in English. Without `labels`, `ChangelogContent` uses `ChangelogLabels.Default`, the built-in English texts.
+
+To replace only some of the texts and keep the English texts for the rest, use `copy` on `ChangelogLabels.Default`. Texts added in a later version of the library then also fall back to English.
+
+```kotlin
+labels = ChangelogLabels.Default.copy(
+    retry = stringResource(R.string.changelog_retry)
+)
+```
+
+For `errorInvalidFormat` and `errorReadFailed`, the underlying error message is appended as `"<text>: <message>"` when available. The change type badges (`NEW`, `FIX`, `BREAKING`) are not customizable.
 
 ## XML Format
 

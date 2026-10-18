@@ -9,8 +9,9 @@ class ChangelogErrorTextTest {
 
     @Test
     fun `default labels produce the built-in English texts`() {
-        val labels = ChangelogLabels()
+        val labels = ChangelogLabels.Default
 
+        assertThat(labels.retry).isEqualTo("Retry")
         assertThat(ChangelogError.ResourceNotFound.toText(labels))
             .isEqualTo("Changelog resource not found")
         assertThat(ChangelogError.InvalidFormat("unexpected tag").toText(labels))
@@ -22,6 +23,7 @@ class ChangelogErrorTextTest {
     @Test
     fun `custom labels replace the error texts`() {
         val labels = ChangelogLabels(
+            retry = "再試行",
             errorResourceNotFound = "変更履歴が見つかりません",
             errorInvalidFormat = "変更履歴の形式が不正です",
             errorReadFailed = "変更履歴を読み込めません",
@@ -36,8 +38,25 @@ class ChangelogErrorTextTest {
     }
 
     @Test
+    fun `copy replaces only the given texts`() {
+        val labels = ChangelogLabels.Default.copy(
+            retry = "再試行",
+            errorReadFailed = "変更履歴を読み込めません",
+        )
+
+        assertThat(labels).isEqualTo(
+            ChangelogLabels(
+                retry = "再試行",
+                errorResourceNotFound = "Changelog resource not found",
+                errorInvalidFormat = "Invalid changelog format",
+                errorReadFailed = "変更履歴を読み込めません",
+            ),
+        )
+    }
+
+    @Test
     fun `error without message shows only the label`() {
-        val labels = ChangelogLabels()
+        val labels = ChangelogLabels.Default
 
         assertThat(ChangelogError.InvalidFormat(null).toText(labels))
             .isEqualTo("Invalid changelog format")
