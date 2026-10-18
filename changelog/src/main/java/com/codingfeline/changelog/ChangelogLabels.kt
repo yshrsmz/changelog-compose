@@ -20,14 +20,12 @@ import androidx.compose.runtime.Immutable
  * )
  * ```
  *
- * To replace only some of the texts and keep the built-in English texts for the rest, use
- * [Default] with [copy]:
+ * To replace only some of the texts and keep the built-in English texts for the rest
+ * (including texts added in a later version of the library), use [Default] with [copy]:
  *
  * ```kotlin
  * labels = ChangelogLabels.Default.copy(retry = stringResource(R.string.changelog_retry))
  * ```
- *
- * Note that texts added in a later version of the library then also fall back to English.
  *
  * The change type badges (`NEW`, `FIX`, `BREAKING`) are not customizable.
  *
