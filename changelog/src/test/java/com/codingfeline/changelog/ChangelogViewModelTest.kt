@@ -2,6 +2,7 @@ package com.codingfeline.changelog
 
 import io.mockk.coEvery
 import io.mockk.mockk
+import io.mockk.verify
 import com.codingfeline.changelog.internal.ui.ChangeItem
 import com.codingfeline.changelog.internal.ui.ChangeType
 import com.codingfeline.changelog.internal.ui.Changelog
@@ -51,8 +52,10 @@ class MainCoroutineRule(
 @OptIn(ExperimentalCoroutinesApi::class)
 class ChangelogViewModelTest {
 
+    private val testDispatcher = UnconfinedTestDispatcher()
+
     @get:Rule
-    val mainCoroutineRule = MainCoroutineRule(UnconfinedTestDispatcher())
+    val mainCoroutineRule = MainCoroutineRule(testDispatcher)
 
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -85,7 +88,7 @@ class ChangelogViewModelTest {
     @Before
     fun setup() {
         changelogParser = mockk()
-        viewModel = ChangelogViewModel(changelogParser)
+        viewModel = ChangelogViewModel(changelogParser, testDispatcher)
     }
 
     @Test
@@ -102,6 +105,27 @@ class ChangelogViewModelTest {
         assertThat(finalState.isLoading).isFalse()
         assertThat(finalState.changelog).isEqualTo(testChangelog)
         assertThat(finalState.error).isNull()
+    }
+
+    @Test
+    fun `viewModel parses changelog on the io dispatcher`() = runTest {
+        // Given an io dispatcher that only runs when the scheduler advances
+        val ioDispatcher = StandardTestDispatcher(testDispatcher.scheduler)
+        val deferredViewModel = ChangelogViewModel(changelogParser, ioDispatcher)
+        coEvery { changelogParser.parseChangelog(testResourceId) } returns testChangelog
+
+        // When
+        deferredViewModel.loadChangelog(testResourceId)
+
+        // Then parsing is dispatched to the io dispatcher, not run inline on main
+        verify(exactly = 0) { changelogParser.parseChangelog(any()) }
+        assertThat(deferredViewModel.uiState.value.isLoading).isTrue()
+
+        advanceUntilIdle()
+
+        verify(exactly = 1) { changelogParser.parseChangelog(testResourceId) }
+        assertThat(deferredViewModel.uiState.value.isLoading).isFalse()
+        assertThat(deferredViewModel.uiState.value.changelog).isEqualTo(testChangelog)
     }
 
     @Test
@@ -181,7 +205,7 @@ class ChangelogViewModelTest {
     @Test
     fun `initial state is loading with empty changelog`() = runTest {
         // Given a new ViewModel
-        val freshViewModel = ChangelogViewModel(changelogParser)
+        val freshViewModel = ChangelogViewModel(changelogParser, testDispatcher)
 
         // Then
         val initialState = freshViewModel.uiState.value
