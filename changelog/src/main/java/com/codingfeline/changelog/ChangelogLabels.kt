@@ -5,8 +5,8 @@ import androidx.compose.runtime.Immutable
 /**
  * Texts displayed by [ChangelogContent].
  *
- * Every text defaults to the library's built-in English text, so you only need to
- * pass the ones you want to replace (e.g. with values from `stringResource`):
+ * The constructor requires every text, so a forgotten text (or one added in a later version of
+ * the library) is a compile error instead of silently falling back to English:
  *
  * ```kotlin
  * ChangelogContent(
@@ -14,8 +14,17 @@ import androidx.compose.runtime.Immutable
  *     labels = ChangelogLabels(
  *         retry = stringResource(R.string.changelog_retry),
  *         errorResourceNotFound = stringResource(R.string.changelog_error_not_found),
+ *         errorInvalidFormat = stringResource(R.string.changelog_error_invalid_format),
+ *         errorReadFailed = stringResource(R.string.changelog_error_read_failed),
  *     )
  * )
+ * ```
+ *
+ * To replace only some of the texts and keep the built-in English texts for the rest
+ * (including texts added in a later version of the library), use [Default] with [copy]:
+ *
+ * ```kotlin
+ * labels = ChangelogLabels.Default.copy(retry = stringResource(R.string.changelog_retry))
  * ```
  *
  * The change type badges (`NEW`, `FIX`, `BREAKING`) are not customizable.
@@ -29,11 +38,26 @@ import androidx.compose.runtime.Immutable
  */
 @Immutable
 class ChangelogLabels(
-    val retry: String = "Retry",
-    val errorResourceNotFound: String = "Changelog resource not found",
-    val errorInvalidFormat: String = "Invalid changelog format",
-    val errorReadFailed: String = "Failed to read changelog",
+    val retry: String,
+    val errorResourceNotFound: String,
+    val errorInvalidFormat: String,
+    val errorReadFailed: String,
 ) {
+    /**
+     * Returns a copy of these labels with the given texts replaced.
+     */
+    fun copy(
+        retry: String = this.retry,
+        errorResourceNotFound: String = this.errorResourceNotFound,
+        errorInvalidFormat: String = this.errorInvalidFormat,
+        errorReadFailed: String = this.errorReadFailed,
+    ): ChangelogLabels = ChangelogLabels(
+        retry = retry,
+        errorResourceNotFound = errorResourceNotFound,
+        errorInvalidFormat = errorInvalidFormat,
+        errorReadFailed = errorReadFailed,
+    )
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is ChangelogLabels) return false
@@ -54,4 +78,16 @@ class ChangelogLabels(
     override fun toString(): String =
         "ChangelogLabels(retry=$retry, errorResourceNotFound=$errorResourceNotFound, " +
             "errorInvalidFormat=$errorInvalidFormat, errorReadFailed=$errorReadFailed)"
+
+    companion object {
+        /**
+         * The library's built-in English texts, used when no labels are passed to [ChangelogContent].
+         */
+        val Default: ChangelogLabels = ChangelogLabels(
+            retry = "Retry",
+            errorResourceNotFound = "Changelog resource not found",
+            errorInvalidFormat = "Invalid changelog format",
+            errorReadFailed = "Failed to read changelog",
+        )
+    }
 }

@@ -73,14 +73,14 @@ import androidx.compose.ui.unit.dp
  *                       Defaults to `PaddingValues(16.dp)`. Note that passing a value
  *                       replaces the default padding entirely.
  * @param labels The texts displayed in the error state (retry button and error messages).
- *               Defaults to the built-in English texts. See [ChangelogLabels].
+ *               Defaults to [ChangelogLabels.Default], the built-in English texts.
  */
 @Composable
 fun ChangelogContent(
     @RawRes changelogResId: Int,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(16.dp),
-    labels: ChangelogLabels = ChangelogLabels(),
+    labels: ChangelogLabels = ChangelogLabels.Default,
 ) {
     ChangelogContent(
         changelogResId = changelogResId,
