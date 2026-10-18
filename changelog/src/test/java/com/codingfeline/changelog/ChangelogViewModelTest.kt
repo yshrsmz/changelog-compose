@@ -129,6 +129,42 @@ class ChangelogViewModelTest {
     }
 
     @Test
+    fun `loading a new resource cancels the in-flight load`() = runTest {
+        // Given an io dispatcher that only runs when the scheduler advances
+        val ioDispatcher = StandardTestDispatcher(testDispatcher.scheduler)
+        val deferredViewModel = ChangelogViewModel(changelogParser, ioDispatcher)
+        val otherResourceId = 67890
+        coEvery { changelogParser.parseChangelog(any()) } returns testChangelog
+
+        // When a second resource is requested before the first one is parsed
+        deferredViewModel.loadChangelog(otherResourceId)
+        deferredViewModel.loadChangelog(testResourceId)
+        advanceUntilIdle()
+
+        // Then only the latest request is parsed
+        verify(exactly = 0) { changelogParser.parseChangelog(otherResourceId) }
+        verify(exactly = 1) { changelogParser.parseChangelog(testResourceId) }
+        assertThat(deferredViewModel.uiState.value.isLoading).isFalse()
+    }
+
+    @Test
+    fun `loading the same resource again is skipped once loaded`() = runTest {
+        // Given
+        coEvery { changelogParser.parseChangelog(testResourceId) } returns testChangelog
+        viewModel.loadChangelog(testResourceId)
+        advanceUntilIdle()
+
+        // When the same resource is requested again, e.g. after a configuration change
+        viewModel.loadChangelog(testResourceId)
+        advanceUntilIdle()
+
+        // Then the changelog is not reloaded
+        verify(exactly = 1) { changelogParser.parseChangelog(testResourceId) }
+        assertThat(viewModel.uiState.value.isLoading).isFalse()
+        assertThat(viewModel.uiState.value.changelog).isEqualTo(testChangelog)
+    }
+
+    @Test
     fun `viewModel handles parsing error`() = runTest {
         // Given
         val errorMessage = "Failed to parse XML"
