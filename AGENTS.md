@@ -1,29 +1,10 @@
 # Repository Guidelines
 
-<!-- OPENSPEC:START -->
-## OpenSpec Instructions
-
-These instructions are for AI assistants working in this project.
-
-Always open `@/openspec/AGENTS.md` when the request:
-- Mentions planning or proposals (words like proposal, spec, change, plan)
-- Introduces new capabilities, breaking changes, architecture shifts, or big performance/security work
-- Sounds ambiguous and you need the authoritative spec before coding
-
-Use `@/openspec/AGENTS.md` to learn:
-- How to create and apply change proposals
-- Spec format and conventions
-- Project structure and guidelines
-
-Keep this managed block so 'openspec update' can refresh the instructions.
-
-<!-- OPENSPEC:END -->
-
 ## Project Structure & Module Organization
 - `:changelog` lives in `changelog/src/main/java/com/codingfeline/changelog` and hosts the Compose UI, parser, and view-model layers; keep non-API code marked `internal`.
 - `:app` demonstrates integration in `app/src/main/java/com/codingfeline/changelog/sample`, with resources under `app/src/main/res` for manual UX checks.
 - Unit tests reside in `changelog/src/test/java`; sample unit and instrumentation tests sit in `app/src/test` and `app/src/androidTest`.
-- Shared Gradle configuration and publishing metadata are in `gradle.properties`; process docs for larger proposals live in `openspec/`.
+- Shared Gradle configuration and publishing metadata are in `gradle.properties`; OpenSpec specs and change proposals for larger changes live in `openspec/` (project context in `openspec/config.yaml`; workflow in CLAUDE.md and `.claude/skills/openspec-*/`).
 
 ## Build, Test, and Development Commands
 - `./gradlew :changelog:assembleRelease` – build the publishable AAR.

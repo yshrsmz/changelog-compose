@@ -1,0 +1,9 @@
+schema: spec-driven
+
+context: |
+  Write artifacts in Japanese. Keep code identifiers, technical terms, and `### Requirement:` names in English.
+  changelog-compose: a Jetpack Compose library that renders an in-app changelog parsed from an XML file in `res/raw`.
+  Modules: `:changelog` is the library published to Maven Central (`com.codingfeline.changelog:changelog-compose`); `:app` is a sample app for manual checks.
+  Keep non-API code in `:changelog` `internal`. Changes to the public API or to the accepted XML format affect library consumers: mark breaking ones with `**BREAKING**` in the proposal and commit them as `type(scope)!:` so release-please bumps the major version.
+  Unit tests live in `changelog/src/test`; CI runs `./gradlew testDebugUnitTest` and `./gradlew assembleDebug`.
+  Repository conventions (build commands, commit format, the one-PR OpenSpec flow): CLAUDE.md and AGENTS.md.
