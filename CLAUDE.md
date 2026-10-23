@@ -2,25 +2,6 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-<!-- OPENSPEC:START -->
-## OpenSpec Instructions
-
-These instructions are for AI assistants working in this project.
-
-Always open `@/openspec/AGENTS.md` when the request:
-- Mentions planning or proposals (words like proposal, spec, change, plan)
-- Introduces new capabilities, breaking changes, architecture shifts, or big performance/security work
-- Sounds ambiguous and you need the authoritative spec before coding
-
-Use `@/openspec/AGENTS.md` to learn:
-- How to create and apply change proposals
-- Spec format and conventions
-- Project structure and guidelines
-
-Keep this managed block so 'openspec update' can refresh the instructions.
-
-<!-- OPENSPEC:END -->
-
 ## OpenSpec CLI
 
 The openspec CLI is managed locally via pnpm (`@fission-ai/openspec` in `package.json`).
@@ -32,13 +13,23 @@ pnpm run openspec validate <change-id> --strict
 - Do not install openspec globally or run it via npx
 - Its postinstall script (shell-completion hint only) is intentionally disabled via `allowBuilds` in `pnpm-workspace.yaml` — do not approve builds for it
 - To validate all specs (e.g. after archiving), use `pnpm run openspec validate --specs --strict`. `validate --strict` without an item or `--specs` prompts interactively and fails in non-interactive shells
+- The `/opsx:*` commands and `openspec-*` skills call `openspec ...` directly; run those commands as `pnpm exec openspec ...` so the examples map directly
+- Project context for generated artifacts lives in `openspec/config.yaml`
+
+### Regenerate assets after a version bump
+
+When `@fission-ai/openspec` is bumped (including Renovate PRs), run `pnpm install` and then `pnpm run openspec update` to regenerate `.claude/commands/opsx/*` and `.claude/skills/openspec-*/`, and commit the result in the same PR. A `package.json` / lockfile-only update is not complete.
+
+- The generated workflows come only from the global profile of whoever runs `update` (`pnpm run openspec config path`); the repository has no setting for them
+- This repository assumes the `custom` profile with workflows `propose, explore, apply, update, sync, archive, verify`. Check with `pnpm run openspec config list` before running `update`
+- `update` deletes assets for workflows missing from the profile. If regenerated `opsx` commands or `openspec-*` skills disappear in the diff, suspect a profile mismatch
 
 ## OpenSpec Change Workflow
 
-Handle one OpenSpec change in a single PR, from proposal to archive. This overrides the "archive in a separate PR after deployment" guidance in `openspec/AGENTS.md` (precedents: #70, #118).
+Handle one OpenSpec change in a single PR, from proposal to archive, instead of archiving in a separate PR after deployment (precedents: #70, #118).
 
-1. Commit the proposal (`openspec/changes/<change-id>/`) on a feature branch and open a draft PR
-2. After the proposal is approved, implement it on the same branch
+1. Commit the proposal (`openspec/changes/<change-id>/`, e.g. via `/opsx:propose`) on a feature branch and open a draft PR
+2. After the proposal is approved, implement it on the same branch (e.g. via `/opsx:apply`)
 3. Once implementation is complete, run the `/simplify` skill, then run `/code-review medium` in a separate context (a forked/background agent, not the implementing context)
 4. Archive the change in the same PR (`pnpm run openspec archive <change-id> --yes`), then validate with `--specs --strict`
 
