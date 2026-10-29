@@ -129,6 +129,25 @@ class ChangelogViewModelTest {
     }
 
     @Test
+    fun `factory creates a viewModel that parses on the given io dispatcher`() = runTest {
+        // Given a factory with an io dispatcher that only runs when the scheduler advances
+        val ioDispatcher = StandardTestDispatcher(testDispatcher.scheduler)
+        val factoryViewModel = ChangelogViewModel.Factory(changelogParser, ioDispatcher)
+            .create(ChangelogViewModel::class.java)
+        coEvery { changelogParser.parseChangelog(testResourceId) } returns testChangelog
+
+        // When
+        factoryViewModel.loadChangelog(testResourceId)
+
+        // Then parsing waits for the given io dispatcher instead of Dispatchers.IO
+        verify(exactly = 0) { changelogParser.parseChangelog(any()) }
+
+        advanceUntilIdle()
+
+        verify(exactly = 1) { changelogParser.parseChangelog(testResourceId) }
+    }
+
+    @Test
     fun `loading a new resource cancels the in-flight load`() = runTest {
         // Given an io dispatcher that only runs when the scheduler advances
         val ioDispatcher = StandardTestDispatcher(testDispatcher.scheduler)

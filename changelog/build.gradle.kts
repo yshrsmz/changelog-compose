@@ -46,7 +46,8 @@ dependencies {
     implementation(libs.androidx.compose.viewmodel)
 
     // Coroutines
-    implementation(libs.kotlinx.coroutines.core)
+    // CoroutineDispatcher is part of the public ChangelogContent API
+    api(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
 
     // Debug
