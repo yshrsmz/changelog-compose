@@ -162,7 +162,7 @@ fun changelogIsDisplayed() {
 }
 ```
 
-To check the loading state first, pass a `StandardTestDispatcher` and advance its scheduler after the assertion. The dispatcher is captured when `ChangelogContent` first creates its view model, so changing it afterwards has no effect.
+This relies on the view model resuming on the real main dispatcher. If your test replaces `Dispatchers.Main` with a `StandardTestDispatcher` (e.g. through a `MainDispatcherRule`), advance that dispatcher's scheduler as well before asserting. To check the loading state first, pass a `StandardTestDispatcher` and advance its scheduler after the assertion. The dispatcher is captured when `ChangelogContent` first creates its view model, so changing it afterwards has no effect.
 
 ## XML Format
 

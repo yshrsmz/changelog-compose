@@ -134,7 +134,11 @@ class ChangelogViewModelTest {
         val ioDispatcher = StandardTestDispatcher(testDispatcher.scheduler)
         val factoryViewModel = ChangelogViewModel.Factory(changelogParser, ioDispatcher)
             .create(ChangelogViewModel::class.java)
-        coEvery { changelogParser.parseChangelog(testResourceId) } returns testChangelog
+        var parseThread: Thread? = null
+        coEvery { changelogParser.parseChangelog(testResourceId) } answers {
+            parseThread = Thread.currentThread()
+            testChangelog
+        }
 
         // When
         factoryViewModel.loadChangelog(testResourceId)
@@ -144,7 +148,9 @@ class ChangelogViewModelTest {
 
         advanceUntilIdle()
 
+        // and runs on the test thread, which a real IO dispatcher would not use
         verify(exactly = 1) { changelogParser.parseChangelog(testResourceId) }
+        assertThat(parseThread).isSameInstanceAs(Thread.currentThread())
     }
 
     @Test

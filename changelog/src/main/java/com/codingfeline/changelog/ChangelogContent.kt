@@ -84,6 +84,9 @@ import kotlinx.coroutines.Dispatchers
  * composeTestRule.onNodeWithText("v1.0.0").assertIsDisplayed()
  * ```
  *
+ * If the test replaces `Dispatchers.Main` with a `StandardTestDispatcher`, advance that
+ * dispatcher's scheduler as well, since the load result is delivered on the main dispatcher.
+ *
  * @param changelogResId The raw resource ID of the XML changelog file (e.g., `R.raw.changelog`).
  *                       The file must be placed in `res/raw/` directory.
  * @param modifier The [Modifier] to be applied to the root composable.
