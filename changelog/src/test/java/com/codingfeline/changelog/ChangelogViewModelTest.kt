@@ -154,6 +154,20 @@ class ChangelogViewModelTest {
     }
 
     @Test
+    fun `parsing in place finishes loading without advancing the scheduler`() {
+        // Given the dispatcher ChangelogContent uses in previews and screenshot tests
+        val inPlaceViewModel = ChangelogViewModel(changelogParser, Dispatchers.Unconfined)
+        coEvery { changelogParser.parseChangelog(testResourceId) } returns testChangelog
+
+        // When
+        inPlaceViewModel.loadChangelog(testResourceId)
+
+        // Then the changelog is shown right away instead of the loading state
+        assertThat(inPlaceViewModel.uiState.value.isLoading).isFalse()
+        assertThat(inPlaceViewModel.uiState.value.changelog).isEqualTo(testChangelog)
+    }
+
+    @Test
     fun `loading a new resource cancels the in-flight load`() = runTest {
         // Given an io dispatcher that only runs when the scheduler advances
         val ioDispatcher = StandardTestDispatcher(testDispatcher.scheduler)

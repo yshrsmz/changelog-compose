@@ -28,7 +28,7 @@ Add the dependency to your app's `build.gradle.kts`:
 <!-- x-release-please-start-version -->
 ```kotlin
 dependencies {
-    implementation("com.codingfeline.changelog:changelog-compose:1.0.0")
+    implementation("com.codingfeline.changelog:changelog-compose:1.0.1")
 }
 ```
 
@@ -36,7 +36,7 @@ Or using version catalog in `gradle/libs.versions.toml`:
 
 ```toml
 [versions]
-changelog-compose = "1.0.0"
+changelog-compose = "1.0.1"
 
 [libraries]
 changelog-compose = { module = "com.codingfeline.changelog:changelog-compose", version.ref = "changelog-compose" }
@@ -163,6 +163,8 @@ fun changelogIsDisplayed() {
 ```
 
 This relies on the view model resuming on the real main dispatcher. If your test replaces `Dispatchers.Main` with a `StandardTestDispatcher` (e.g. through a `MainDispatcherRule`), advance that dispatcher's scheduler as well before asserting. To check the loading state first, pass a `StandardTestDispatcher` and advance its scheduler after the assertion. The dispatcher is captured when `ChangelogContent` first creates its view model, so changing it afterwards has no effect.
+
+In Android Studio's Preview and in screenshot tests that set `LocalInspectionMode` to true, `ioDispatcher` is not used and the changelog is parsed in place, so the capture shows the changelog instead of the loading state.
 
 ## XML Format
 

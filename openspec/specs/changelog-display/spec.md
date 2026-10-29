@@ -56,7 +56,7 @@ Android アプリ内で変更履歴（changelog）を表示する Compose UI を
 
 ### Requirement: Injectable io dispatcher
 
-公開 `ChangelogContent` composable は `ioDispatcher: CoroutineDispatcher` パラメータを受け付け、変更履歴の XML の読み込みと解析をその dispatcher で行わなければならない（MUST）。デフォルト値は `Dispatchers.IO` とし、従来の動作と同一でなければならない（MUST）。引数を追加する前のシグネチャで `ChangelogContent` を呼ぶ既存のソースとバイナリは、変更なしで動作し続けなければならない（MUST）。
+公開 `ChangelogContent` composable は `ioDispatcher: CoroutineDispatcher` パラメータを受け付け、変更履歴の XML の読み込みと解析をその dispatcher で行わなければならない（MUST）。デフォルト値は `Dispatchers.IO` とし、従来の動作と同一でなければならない（MUST）。引数を追加する前のシグネチャで `ChangelogContent` を呼ぶ既存のソースとバイナリは、変更なしで動作し続けなければならない（MUST）。ただし `LocalInspectionMode` が true のときは、`ioDispatcher` を使わずにその場で解析しなければならない（MUST）。
 
 #### Scenario: ioDispatcher を指定しない
 
@@ -72,3 +72,8 @@ Android アプリ内で変更履歴（changelog）を表示する Compose UI を
 
 - **WHEN** `ioDispatcher` を追加する前のバージョンに対してコンパイルされたコードが `ChangelogContent` を呼び出す
 - **THEN** `NoSuchMethodError` にならず、`Dispatchers.IO` で読み込んで表示する
+
+#### Scenario: Preview やスクリーンショットテストで表示する
+
+- **WHEN** `LocalInspectionMode` が true の環境（Android Studio の Preview、inspection mode を有効にしたスクリーンショットテスト）で `ChangelogContent` を表示する
+- **THEN** `ioDispatcher` は使わずにその場で解析し、読み込み中ではなく変更履歴を表示する

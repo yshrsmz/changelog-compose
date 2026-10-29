@@ -15,6 +15,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -87,6 +88,10 @@ import kotlinx.coroutines.Dispatchers
  * If the test replaces `Dispatchers.Main` with a `StandardTestDispatcher`, advance that
  * dispatcher's scheduler as well, since the load result is delivered on the main dispatcher.
  *
+ * In Android Studio's Preview and in screenshot tests that set `LocalInspectionMode` to true,
+ * [ioDispatcher] is not used and the changelog is parsed in place, so the capture shows the
+ * changelog instead of the loading state.
+ *
  * @param changelogResId The raw resource ID of the XML changelog file (e.g., `R.raw.changelog`).
  *                       The file must be placed in `res/raw/` directory.
  * @param modifier The [Modifier] to be applied to the root composable.
@@ -100,6 +105,7 @@ import kotlinx.coroutines.Dispatchers
  *                     Defaults to [Dispatchers.IO]. Pass a test dispatcher in UI tests to
  *                     synchronize with the load. The dispatcher is captured when the internal
  *                     view model is first created, so changing it afterwards has no effect.
+ *                     Ignored when `LocalInspectionMode` is true (see Testing above).
  */
 @Composable
 fun ChangelogContent(
@@ -119,7 +125,7 @@ fun ChangelogContent(
     )
 }
 
-// Keeps binaries compiled against 1.0.0, which lack the ioDispatcher parameter, working
+// Keeps binaries compiled against 1.0.x, which lack the ioDispatcher parameter, working
 @Deprecated("Kept for binary compatibility", level = DeprecationLevel.HIDDEN)
 @Composable
 fun ChangelogContent(
@@ -146,7 +152,10 @@ internal fun ChangelogContent(
     viewModel: ChangelogViewModel = viewModel(
         factory = ChangelogViewModel.Factory(
             changelogParser = ChangelogParser(context.applicationContext),
-            ioDispatcher = ioDispatcher,
+            // Previews and screenshot tests capture without waiting for work on other
+            // threads, so parse in place there to show the changelog instead of the
+            // loading state
+            ioDispatcher = if (LocalInspectionMode.current) Dispatchers.Unconfined else ioDispatcher,
         ),
     ),
     contentPadding: PaddingValues = PaddingValues(16.dp),
