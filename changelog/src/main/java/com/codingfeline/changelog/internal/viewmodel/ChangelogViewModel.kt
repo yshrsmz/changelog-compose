@@ -90,11 +90,12 @@ internal class ChangelogViewModel(
 
     class Factory(
         private val changelogParser: ChangelogParser,
+        private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
     ) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(ChangelogViewModel::class.java)) {
-                return ChangelogViewModel(changelogParser) as T
+                return ChangelogViewModel(changelogParser, ioDispatcher) as T
             }
             throw IllegalArgumentException("Unknown ViewModel class")
         }

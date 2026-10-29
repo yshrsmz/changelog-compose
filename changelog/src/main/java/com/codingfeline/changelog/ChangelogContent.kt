@@ -15,7 +15,9 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.Dispatchers
 
 /**
  * Displays a changelog parsed from an XML resource file.
@@ -100,6 +102,10 @@ internal fun ChangelogContent(
     viewModel: ChangelogViewModel = viewModel(
         factory = ChangelogViewModel.Factory(
             changelogParser = ChangelogParser(context.applicationContext),
+            // Previews and screenshot tests capture without waiting for work on other
+            // threads, so parse in place there to show the changelog instead of the
+            // loading state
+            ioDispatcher = if (LocalInspectionMode.current) Dispatchers.Unconfined else Dispatchers.IO,
         ),
     ),
     contentPadding: PaddingValues = PaddingValues(16.dp),
