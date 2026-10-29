@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/yshrsmz/changelog-compose/compare/changelog-compose-v1.0.0...changelog-compose-v1.0.1) (2026-10-29)
+
+
+### Bug Fixes
+
+* **changelog:** parse in place in previews and screenshot tests ([#144](https://github.com/yshrsmz/changelog-compose/issues/144)) ([8ddd984](https://github.com/yshrsmz/changelog-compose/commit/8ddd9844680ee9382839415544d34c01227eb2fa))
+
 ## [1.0.0](https://github.com/yshrsmz/changelog-compose/compare/changelog-compose-v0.4.0...changelog-compose-v1.0.0) (2026-10-18)
 
 
