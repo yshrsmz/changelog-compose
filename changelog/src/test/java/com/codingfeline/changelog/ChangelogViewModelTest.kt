@@ -129,6 +129,40 @@ class ChangelogViewModelTest {
     }
 
     @Test
+    fun `factory passes the io dispatcher to the view model`() = runTest {
+        // Given a factory with an io dispatcher that only runs when the scheduler advances
+        val ioDispatcher = StandardTestDispatcher(testDispatcher.scheduler)
+        val factoryViewModel = ChangelogViewModel.Factory(changelogParser, ioDispatcher)
+            .create(ChangelogViewModel::class.java)
+        coEvery { changelogParser.parseChangelog(testResourceId) } returns testChangelog
+
+        // When
+        factoryViewModel.loadChangelog(testResourceId)
+
+        // Then parsing waits for the given dispatcher
+        verify(exactly = 0) { changelogParser.parseChangelog(any()) }
+
+        advanceUntilIdle()
+
+        verify(exactly = 1) { changelogParser.parseChangelog(testResourceId) }
+        assertThat(factoryViewModel.uiState.value.changelog).isEqualTo(testChangelog)
+    }
+
+    @Test
+    fun `parsing in place finishes loading without advancing the scheduler`() {
+        // Given the dispatcher ChangelogContent uses in previews and screenshot tests
+        val inPlaceViewModel = ChangelogViewModel(changelogParser, Dispatchers.Unconfined)
+        coEvery { changelogParser.parseChangelog(testResourceId) } returns testChangelog
+
+        // When
+        inPlaceViewModel.loadChangelog(testResourceId)
+
+        // Then the changelog is shown right away instead of the loading state
+        assertThat(inPlaceViewModel.uiState.value.isLoading).isFalse()
+        assertThat(inPlaceViewModel.uiState.value.changelog).isEqualTo(testChangelog)
+    }
+
+    @Test
     fun `loading a new resource cancels the in-flight load`() = runTest {
         // Given an io dispatcher that only runs when the scheduler advances
         val ioDispatcher = StandardTestDispatcher(testDispatcher.scheduler)
