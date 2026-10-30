@@ -41,6 +41,8 @@ class ChangelogContentTest {
 
         composeTestRule.onNodeWithText("v2.0.0").assertIsDisplayed()
         composeTestRule.onNodeWithText("Test regular change without type").assertIsDisplayed()
+        // A typed item's text starts with the label's alternate text, e.g. "[NEW]"
+        composeTestRule.onNodeWithText("Test new feature", substring = true).assertIsDisplayed()
         composeTestRule.onNode(loadingIndicator).assertDoesNotExist()
     }
 }
