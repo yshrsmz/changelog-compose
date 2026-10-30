@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/yshrsmz/changelog-compose/compare/changelog-compose-v1.0.1...changelog-compose-v1.1.0) (2026-10-30)
+
+
+### Features
+
+* **changelog:** add ioDispatcher parameter to ChangelogContent ([#143](https://github.com/yshrsmz/changelog-compose/issues/143)) ([76a9673](https://github.com/yshrsmz/changelog-compose/commit/76a967309a76f7a3955d2c7bc06e1b45d0c10150))
+
 ## [1.0.1](https://github.com/yshrsmz/changelog-compose/compare/changelog-compose-v1.0.0...changelog-compose-v1.0.1) (2026-10-29)
 
 
