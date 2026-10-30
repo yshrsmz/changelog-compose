@@ -144,6 +144,28 @@ labels = ChangelogLabels.Default.copy(
 
 For `errorInvalidFormat` and `errorReadFailed`, the underlying error message is appended as `"<text>: <message>"` when available. The change type badges (`NEW`, `FIX`, `BREAKING`) are not customizable.
 
+### Testing with a Custom Dispatcher
+
+The changelog XML is read and parsed on `ioDispatcher`, which defaults to `Dispatchers.IO`. In Compose UI tests, pass a `TestDispatcher` from `kotlinx-coroutines-test` so the test can synchronize with the load instead of waiting in real time. With an `UnconfinedTestDispatcher`, the changelog is loaded by the time `waitForIdle()` returns:
+
+```kotlin
+@Test
+fun changelogIsDisplayed() {
+    composeTestRule.setContent {
+        ChangelogContent(
+            changelogResId = R.raw.changelog,
+            ioDispatcher = UnconfinedTestDispatcher()
+        )
+    }
+
+    composeTestRule.onNodeWithText("v1.0.0").assertIsDisplayed()
+}
+```
+
+This relies on the view model resuming on the real main dispatcher. If your test replaces `Dispatchers.Main` with a `StandardTestDispatcher` (e.g. through a `MainDispatcherRule`), advance that dispatcher's scheduler as well before asserting. To check the loading state first, pass a `StandardTestDispatcher` and advance its scheduler after the assertion. The dispatcher is captured when `ChangelogContent` first creates its view model, so changing it afterwards has no effect.
+
+In Android Studio's Preview and in screenshot tests that set `LocalInspectionMode` to true, `ioDispatcher` is not used and the changelog is parsed in place, so the capture shows the changelog instead of the loading state.
+
 ## XML Format
 
 ### Root Element

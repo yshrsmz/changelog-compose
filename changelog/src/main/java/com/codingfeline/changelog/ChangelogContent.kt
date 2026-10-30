@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
 /**
@@ -67,6 +68,30 @@ import kotlinx.coroutines.Dispatchers
  * }
  * ```
  *
+ * ## Testing
+ *
+ * The changelog XML is read and parsed on [ioDispatcher]. In a Compose UI test, pass a
+ * `TestDispatcher` so the test can synchronize with the load instead of
+ * waiting in real time. With an `UnconfinedTestDispatcher`, the changelog is loaded by the time
+ * `waitForIdle()` returns:
+ *
+ * ```kotlin
+ * composeTestRule.setContent {
+ *     ChangelogContent(
+ *         changelogResId = R.raw.changelog,
+ *         ioDispatcher = UnconfinedTestDispatcher()
+ *     )
+ * }
+ * composeTestRule.onNodeWithText("v1.0.0").assertIsDisplayed()
+ * ```
+ *
+ * If the test replaces `Dispatchers.Main` with a `StandardTestDispatcher`, advance that
+ * dispatcher's scheduler as well, since the load result is delivered on the main dispatcher.
+ *
+ * In Android Studio's Preview and in screenshot tests that set `LocalInspectionMode` to true,
+ * [ioDispatcher] is not used and the changelog is parsed in place, so the capture shows the
+ * changelog instead of the loading state.
+ *
  * @param changelogResId The raw resource ID of the XML changelog file (e.g., `R.raw.changelog`).
  *                       The file must be placed in `res/raw/` directory.
  * @param modifier The [Modifier] to be applied to the root composable.
@@ -76,7 +101,32 @@ import kotlinx.coroutines.Dispatchers
  *                       replaces the default padding entirely.
  * @param labels The texts displayed in the error state (retry button and error messages).
  *               Defaults to [ChangelogLabels.Default], the built-in English texts.
+ * @param ioDispatcher The [CoroutineDispatcher] on which the changelog XML is read and parsed.
+ *                     Defaults to [Dispatchers.IO]. Pass a test dispatcher in UI tests to
+ *                     synchronize with the load. The dispatcher is captured when the internal
+ *                     view model is first created, so changing it afterwards has no effect.
+ *                     Ignored when `LocalInspectionMode` is true (see Testing above).
  */
+@Composable
+fun ChangelogContent(
+    @RawRes changelogResId: Int,
+    modifier: Modifier = Modifier,
+    contentPadding: PaddingValues = PaddingValues(16.dp),
+    labels: ChangelogLabels = ChangelogLabels.Default,
+    ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
+) {
+    ChangelogContent(
+        changelogResId = changelogResId,
+        onRetry = {},
+        modifier = modifier,
+        ioDispatcher = ioDispatcher,
+        contentPadding = contentPadding,
+        labels = labels,
+    )
+}
+
+// Keeps binaries compiled against 1.0.x, which lack the ioDispatcher parameter, working
+@Deprecated("Kept for binary compatibility", level = DeprecationLevel.HIDDEN)
 @Composable
 fun ChangelogContent(
     @RawRes changelogResId: Int,
@@ -86,7 +136,6 @@ fun ChangelogContent(
 ) {
     ChangelogContent(
         changelogResId = changelogResId,
-        onRetry = {},
         modifier = modifier,
         contentPadding = contentPadding,
         labels = labels,
@@ -99,13 +148,14 @@ internal fun ChangelogContent(
     onRetry: () -> Unit,
     modifier: Modifier = Modifier,
     context: Context = LocalContext.current,
+    ioDispatcher: CoroutineDispatcher,
     viewModel: ChangelogViewModel = viewModel(
         factory = ChangelogViewModel.Factory(
             changelogParser = ChangelogParser(context.applicationContext),
             // Previews and screenshot tests capture without waiting for work on other
             // threads, so parse in place there to show the changelog instead of the
             // loading state
-            ioDispatcher = if (LocalInspectionMode.current) Dispatchers.Unconfined else Dispatchers.IO,
+            ioDispatcher = if (LocalInspectionMode.current) Dispatchers.Unconfined else ioDispatcher,
         ),
     ),
     contentPadding: PaddingValues = PaddingValues(16.dp),

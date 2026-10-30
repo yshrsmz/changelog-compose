@@ -25,6 +25,13 @@ android {
     buildFeatures {
         compose = true
     }
+
+    testOptions {
+        unitTests {
+            // Robolectric needs the merged resources and manifest to run Compose UI tests
+            isIncludeAndroidResources = true
+        }
+    }
 }
 
 kotlin {
@@ -46,7 +53,8 @@ dependencies {
     implementation(libs.androidx.compose.viewmodel)
 
     // Coroutines
-    implementation(libs.kotlinx.coroutines.core)
+    // CoroutineDispatcher is part of the public ChangelogContent API
+    api(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
 
     // Debug
@@ -60,6 +68,8 @@ dependencies {
     testImplementation(libs.turbine)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.androidx.arch.coretesting)
+    testImplementation(libs.androidx.compose.ui.test.junit4)
+    testImplementation(libs.androidx.compose.ui.test.manifest)
 }
 
 mavenPublishing {

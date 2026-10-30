@@ -10,7 +10,6 @@ import com.codingfeline.changelog.internal.ui.Changelog
 import org.xmlpull.v1.XmlPullParserException
 import java.io.IOException
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -36,7 +35,7 @@ internal data class ChangelogUiState(
 
 internal class ChangelogViewModel(
     private val changelogParser: ChangelogParser,
-    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
+    private val ioDispatcher: CoroutineDispatcher,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(ChangelogUiState())
@@ -90,7 +89,7 @@ internal class ChangelogViewModel(
 
     class Factory(
         private val changelogParser: ChangelogParser,
-        private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
+        private val ioDispatcher: CoroutineDispatcher,
     ) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
