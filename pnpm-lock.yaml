@@ -9,13 +9,13 @@ importers:
   .:
     devDependencies:
       '@fission-ai/openspec':
-        specifier: 1.16.1
-        version: 1.16.1
+        specifier: 1.17.0
+        version: 1.17.0
 
 packages:
 
-  '@fission-ai/openspec@1.16.1':
-    resolution: {integrity: sha512-Qu2kdUP3oiXK6WzOA1OcEYiTlG3GmLJE37whoGjTEy4vbzuW4o3OwAwYwxSQpJnKHJ/XGySvo+icRiulBCxyzw==}
+  '@fission-ai/openspec@1.17.0':
+    resolution: {integrity: sha512-D9MCbh1WMuJAoSYmtbkR5csHZdhiweuX5RC6+ZxMo9I2F/wq0x2wpFvlyCdo7yV0zenEqVxqmfRmLPd5wuJC7g==}
     engines: {node: '>=22.12.0'}
     hasBin: true
 
@@ -315,7 +315,7 @@ packages:
 
 snapshots:
 
-  '@fission-ai/openspec@1.16.1':
+  '@fission-ai/openspec@1.17.0':
     dependencies:
       '@inquirer/core': 12.0.6
       '@inquirer/prompts': 8.7.5
