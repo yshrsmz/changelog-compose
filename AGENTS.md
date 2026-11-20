@@ -4,7 +4,7 @@
 - `:changelog` lives in `changelog/src/main/java/com/codingfeline/changelog` and hosts the Compose UI, parser, and view-model layers; keep non-API code marked `internal`.
 - `:app` demonstrates integration in `app/src/main/java/com/codingfeline/changelog/sample`, with resources under `app/src/main/res` for manual UX checks.
 - Unit tests reside in `changelog/src/test/java`; sample unit and instrumentation tests sit in `app/src/test` and `app/src/androidTest`.
-- Shared Gradle configuration and publishing metadata are in `gradle.properties`; OpenSpec specs and change proposals for larger changes live in `openspec/` (project context in `openspec/config.yaml`; workflow in CLAUDE.md and `.claude/skills/openspec-*/`).
+- Shared Gradle configuration and publishing metadata are in `gradle.properties`; OpenSpec specs and change proposals for larger changes live in `openspec/` (project context in `openspec/config.yaml`; workflow in CLAUDE.md and `.agents/skills/openspec-*/`, linked from `.claude/skills/`).
 
 ## Build, Test, and Development Commands
 - `./gradlew :changelog:assembleRelease` – build the publishable AAR.

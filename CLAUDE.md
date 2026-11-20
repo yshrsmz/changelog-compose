@@ -13,23 +13,23 @@ pnpm run openspec validate <change-id> --strict
 - Do not install openspec globally or run it via npx
 - Its postinstall script (shell-completion hint only) is intentionally disabled via `allowBuilds` in `pnpm-workspace.yaml` — do not approve builds for it
 - To validate all specs (e.g. after archiving), use `pnpm run openspec validate --specs --strict`. `validate --strict` without an item or `--specs` prompts interactively and fails in non-interactive shells
-- The `/opsx:*` commands and `openspec-*` skills call `openspec ...` directly; run those commands as `pnpm exec openspec ...` so the examples map directly
+- The `openspec-*` skills call `openspec ...` directly; run those commands as `pnpm exec openspec ...` so the examples map directly
 - Project context for generated artifacts lives in `openspec/config.yaml`
 
 ### Regenerate assets after a version bump
 
-When `@fission-ai/openspec` is bumped (including Renovate PRs), run `pnpm install` and then `pnpm run openspec update` to regenerate `.claude/commands/opsx/*` and `.claude/skills/openspec-*/`, and commit the result in the same PR. A `package.json` / lockfile-only update is not complete.
+When `@fission-ai/openspec` is bumped (including Renovate PRs), run `pnpm install` and then `pnpm run openspec update` to regenerate `.agents/skills/openspec-*/` and the `.claude/skills/openspec-*` symlinks pointing to them, and commit the result in the same PR. A `package.json` / lockfile-only update is not complete.
 
 - The generated workflows come only from the global profile of whoever runs `update` (`pnpm run openspec config path`); the repository has no setting for them
 - This repository assumes the `custom` profile with workflows `propose, explore, apply, update, sync, archive, verify`. Check with `pnpm run openspec config list` before running `update`
-- `update` deletes assets for workflows missing from the profile. If regenerated `opsx` commands or `openspec-*` skills disappear in the diff, suspect a profile mismatch
+- `update` deletes assets for workflows missing from the profile. If regenerated `openspec-*` skills disappear in the diff, suspect a profile mismatch
 
 ## OpenSpec Change Workflow
 
 Handle one OpenSpec change in a single PR, from proposal to archive, instead of archiving in a separate PR after deployment (precedents: #70, #118).
 
-1. Commit the proposal (`openspec/changes/<change-id>/`, e.g. via `/opsx:propose`) on a feature branch and open a draft PR
-2. After the proposal is approved, implement it on the same branch (e.g. via `/opsx:apply`)
+1. Commit the proposal (`openspec/changes/<change-id>/`, e.g. via `/openspec-propose`) on a feature branch and open a draft PR
+2. After the proposal is approved, implement it on the same branch (e.g. via `/openspec-apply-change`)
 3. Once implementation is complete, run the `/simplify` skill, then run `/code-review medium` in a separate context (a forked/background agent, not the implementing context)
 4. Archive the change in the same PR (`pnpm run openspec archive <change-id> --yes`), then validate with `--specs --strict`
 
