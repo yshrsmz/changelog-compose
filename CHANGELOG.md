@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/yshrsmz/changelog-compose/compare/changelog-compose-v1.1.0...changelog-compose-v1.1.1) (2026-11-20)
+
+
+### Bug Fixes
+
+* **deps:** update dependency io.mockk:mockk to v1.14.12 ([#155](https://github.com/yshrsmz/changelog-compose/issues/155)) ([423f3d6](https://github.com/yshrsmz/changelog-compose/commit/423f3d64413799ff7f65a98e84d20f67fc890b45))
+
 ## [1.1.0](https://github.com/yshrsmz/changelog-compose/compare/changelog-compose-v1.0.1...changelog-compose-v1.1.0) (2026-10-30)
 
 
